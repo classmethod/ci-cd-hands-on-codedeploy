@@ -1,37 +1,17 @@
 version: 0.2
 
-env:
-  parameter-store:
-    IMAGE_REPOSITORY_NAME: IMAGE_REPOSITORY_NAME
-
 phases:
   install:
     commands:
       ## 依存パッケージをインストール
       - npm install
-  pre_build:
-    commands:
-      ## ECRにログイン
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-
-      ## Dockerイメージのタグとして使用するため、Gitのコミットハッシュを取得
-      - IMAGE_TAG=$CODEBUILD_RESOLVED_SOURCE_VERSION
   build:
     commands:
       ## テスト実行
       - npm test
-
-      ## Dockerイメージのビルド
-      - docker build -t $IMAGE_REPOSITORY_NAME:$IMAGE_TAG .
-
-      ## DockerイメージのECRへのプッシュ
-      - docker push $IMAGE_REPOSITORY_NAME:$IMAGE_TAG
-
-      ## ECSにどのイメージを使用するか指示するためのファイルを作成
-      - printf '[{"name":"fizzbuzz","imageUri":"%s"}]' $IMAGE_REPOSITORY_NAME:$IMAGE_TAG > imagedefinitions.json
-#cache:
-#  paths:
-#   - path
+cache:
+  paths:
+    - 'node_modules/**/*'
 artifacts:
-  ## buildの最後で作成したファイルをアーティファクトを流す
-  files: imagedefinitions.json
+  files:
+    - "**/*"

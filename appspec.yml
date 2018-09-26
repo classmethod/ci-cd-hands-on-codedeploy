@@ -1,0 +1,16 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /usr/src/app
+
+hooks:
+  ApplicationStart:
+    - location: hooks/application_start.sh
+      timeout: 300
+      runas: root
+  ValidateService:
+    - location: hooks/validate_service.sh
+      timeout: 300
+      runas: root

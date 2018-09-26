@@ -20,6 +20,6 @@ app.get('*', (req, res) => {
     res.render("index.ejs", { numbers: numbers });
 });
 
-app.listen(80, () => {
+app.listen(3000, () => {
     console.log("Started fizz buzz applicagtion!");
 });
