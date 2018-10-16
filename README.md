@@ -29,7 +29,7 @@ $1 未満
 
 ## 1. ハンズオンで構築する構成
 
-![構成図](https://cacoo.com/diagrams/Bik1Om7JvTVGzpfj-5F49C.png)
+![構成図](https://cacoo.com/diagrams/Bik1Om7JvTVGzpfj-9A688.png)
 
 今回は上記の図のような構成を構築します。
 
@@ -94,7 +94,7 @@ buildspec.yml		package.json		test
 
 この、CloudFormation によって、以下の図ような構成の環境が作成されます。
 
-![CloudFormationによってい構築される構成](https://cacoo.com/diagrams/Bik1Om7JvTVGzpfj-2D387.png)
+![CloudFormationによってい構築される構成](https://cacoo.com/diagrams/Bik1Om7JvTVGzpfj-CBE40.png)
 
 アプリケーションの動作環境以外に後で CodeBuild で使用するための IAM 　 Role を作成しています。
 
