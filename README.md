@@ -23,7 +23,6 @@ $1 未満
 1. 構成の簡単な紹介
 1. サンプルアプリケーションのフォーク及びクローン
 1. ハンズオン用環境構築用の CloudFormation の実行
-1. 手動デプロイしてみる(講師が実演します)
 1. CodePipeline によるパイプラインの構築および自動デプロイの実行
 1. テストが失敗すると自動デプロイが止まるのを確認
 1. 再度正しいコードに戻して自動デプロイ
@@ -66,6 +65,26 @@ README.md		package-lock.json	template
 buildspec.yml		package.json		test
 ```
 
+## 2. キーペアの作成
+
+インスタンスに SSH でログインするためにキーペアを事前に作成しておきます。今回のハンズオンではインスタンスに SSH でログインしない想定ですが、デバッグ用途などで用意しておくと便利です。すでに作成している場合この作業は必要ありません。
+
+- マネジメントコンソールのトップ画面より「EC2」をクリック
+
+<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-1-640x474.png" alt="devops-hands-on-1" width="640" height="474" class="alignnone size-medium wp-image-258966" />
+
+- 「EC2 ダッシュボード」から「キーペア」をクリック
+
+<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-2-640x409.png" alt="devops-hands-on-2" width="640" height="409" class="alignnone size-medium wp-image-258967" />
+
+- 「キーペアの作成」をクリックしてキーペア名をわかりやすい名前(hands-on など)で入力
+
+<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-3-640x298.png" alt="devops-hands-on-3" width="640" height="298" class="alignnone size-medium wp-image-258968" />
+
+- 「作成」をクリックするとキーペアのダウンロード画面が表示されるので、任意の場所に保存
+
+<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-4-640x421.png" alt="devops-hands-on-4" width="640" height="421" class="alignnone size-medium wp-image-258969" />
+
 ## 3. ハンズオン用環境構築用の CloudFormation の実行
 
 今回 ECS でアプリケーションを動作させるにあたってサービスにリンクしたロールが作成されている必要があります。
@@ -83,6 +102,7 @@ aws iam create-service-linked-role --aws-service-name ecs.amazonaws.com
 [Launch Stack](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/new?stackName=hands-on-environment&templateURL=https://s3-ap-northeast-1.amazonaws.com/ci-cd-hands-on-template/node/hands-on-environment.template.yaml)
 
 上のリンクより、ハンズオン用の環境を構築するための CloudFormation を実行します。
+パラメータ画面でキーペアの名前を選択し、ログインが行えるようにします。
 
 この、CloudFormation によって、以下の図ような構成の環境が作成されます。
 
@@ -94,64 +114,45 @@ aws iam create-service-linked-role --aws-service-name ecs.amazonaws.com
 
 ### 動作確認
 
-作成したスタックの出力に`ALBDNSName`というキーで出力された値が、今回のサンプルアプリケーションのアクセス先の URL です。アドレスバーにコピペして、サンプルアプリケーションの動作を確認します。
+作成したスタックの出力に`ALBDNSName`というキーでアドレスが出力されています。こちらにアクセスすると Nginx の Welcome ページが表示されます。
 
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/99049011a73b9c92d2967f57d2331c56-640x360.png" alt="" width="640" height="360" class="alignnone size-medium wp-image-349754"/>
+<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/FireShot-Capture-13-Test-Page-for-the-Nginx-HTTP-Server-on_-http___fugafug-alb-4hygylams8fk-13-640x341.png" alt="" width="640" height="341" class="alignnone size-medium wp-image-367711" />
 
-## 4. 手動デプロイしてみる（講師が実演します。読み飛ばし可）
+## 3. CodeDeploy の設定
 
-ecs-deploy のようなデプロイに便利なツールもありますが、CodeBuild で行う処理との対比をわかりやすくするため、ここではそういったものは使わずにデプロイを実行します。
+CodePipeline から指定できるデプロイグループを作成するため、先に CodeDeploy の設定を行っていきます。
 
-まずはデプロイされたことがわかりやすくするため、画面を修正します。
+CodeDeploy のアプリケーションの画面からアプリケーションの作成をクリックします。
 
-```shell
-$ npm install
-$ vim template/views/index.ejs
-$ npm test
-$ git commit -am "manual deploy"
-```
+<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/d6036a2cd7ed241bfd1cf3db1c349982-640x227.png" alt="" width="640" height="227" class="alignnone size-medium wp-image-367725" />
 
-つぎに以下のコマンドを実行し、手動でデプロイを実行します。
+| 入力項目                           | 値               |
+| ---------------------------------- | ---------------- |
+| アプリケーション名                 | `hands-on-app`   |
+| コンピューティングプラットフォーム | EC2/オンプレミス |
 
-まず、手元で Docker イメージを構築し、ECR にプッシュします。
+入力項目を入力し、アプリケーションの作成をクリックすると、CodeDeployのアプリケーションが作成され、当該アプリケーションの詳細画面が表示されます。
 
-```
-$ $(aws ecr get-login --no-include-email --region ap-northeast-1)
+<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/801c72268e6b9258abcee851dd3ca369-640x344.png" alt="" width="640" height="344" class="alignnone size-medium wp-image-367726" />
 
-$ IMAGE_REPOSITORY_NAME=`aws ssm get-parameter --name "IMAGE_REPOSITORY_NAME"| jq -r .Parameter.Value`
-$ IMAGE_TAG=`git rev-parse HEAD`
-$ docker build -t $IMAGE_REPOSITORY_NAME:$IMAGE_TAG .
-$ docker push $IMAGE_REPOSITORY_NAME:$IMAGE_TAG
+この画面からさらに「デプロイグループの作成」をクリックし、このアプリケーションにデプロイグループを作成していきます。
 
-$ echo $IMAGE_REPOSITORY_NAME:$IMAGE_TAG
-```
+| 入力項目                           | 値               |
+| ---------------------------------- | ---------------- |
+| デプロイグループ名                | `hands-on-deploy-group`   |
+| サービスロール | `hands-on-environment-codedeploy-service-role` |
+| デプロイタイプ | インプレース |
+| Amazon EC2 Auto Scaling グループ | ✔ |
+| Auto Scaling グループ | `hands-on-environment-asg` |
+| デプロイ設定 | CodeDeployDefault.HalfAtOnce |
+| ロードバランシングを有効にする | ✔ |
+| | Application Load Balancer または Network Load Balancer |
+| Choose a load balancer | `hands-on-environment-alb` |
 
-ECS の設定の修正で使用するため、イメージをプッシュしたリポジトリとタグの値を覚えておきます。
 
-ここまでの操作の中でも、プッシュする対象とは異なるブランチで作業を行っていた場合や、リモートブランチとの同期を忘れるなどした場合には意図したものとは異なるソースコードをデプロイしてしまうリスクがあります。
+## 4. CodePipeline によるパイプラインの構築および自動デプロイの実行
 
-つぎに、コンソールの操作に移り、実際に ECS へのデプロイを行っていきます。
-
-マネジメントコンソールから ECS の画面に移動します。
-
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/ecs-640x483.png" alt="" width="640" height="483" class="alignnone size-medium wp-image-349183" />
-
-まず、タスク定義の新しいリビジョンを作成します。
-
-環境構築用スタックによって作成されたタスクの新しいリビジョンの作成画面を表示します。
-コンテナ名 fizzbuzz の設定画面に移動し、イメージの指定を先程プッシュしたイメージのものに書き換え新しいリビジョンを作成します。
-
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/a3eea352fa04680f29ce2e75163b5ca5-640x344.png" alt="" width="640" height="344" class="alignnone size-medium wp-image-349193" />
-
-次に、環境構築用スタックによって作成されたサービスの編集画面に移動し、新しいタスク定義のリビジョンを指定するように編集をおこない、サービスの更新を実行します。
-
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/ef41ba4015f8a2f42ad5382c33fc1352-640x367.png" alt="" width="640" height="367" class="alignnone size-medium wp-image-349198" />
-
-しばらくすると新しいタスク定義に基づくタスクが実行され、コードの修正が反映されます。
-
-## 5. CodePipeline によるパイプラインの構築および自動デプロイの実行
-
-手動でのデプロイが大変だと感じてもらったところで、CodePipeline/CodeBuild を使用したパイプラインを作成していきます。
+CodePipeline/CodeBuild/CodeDeploy を使用したパイプラインを作成していきます。
 
 今回作成するパイプラインは以下図の左側の部分です。
 
@@ -163,47 +164,53 @@ ECS の設定の修正で使用するため、イメージをプッシュした�
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-15-640x195.png" alt="devops-hands-on-15" width="640" height="195" class="alignnone size-medium wp-image-259029" />
 
-まだパイプラインを作成していない場合は以下のような画面が表示されるので「今すぐ始める」をクリックします。
+以下のような画面が表示されるので「パイプラインの作成」をクリックします。
 
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-16-640x269.png" alt="devops-hands-on-16" width="640" height="269" class="alignnone size-medium wp-image-259031" />
+<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/3a19eb848252813419c880402c423c1e-640x214.png" alt="" width="640" height="214" class="alignnone size-medium wp-image-367717" />
 
-パイプラインのセットアップが開始するのでパイプライン名として`hands-on-pipeline`と入力して「次のステップ」をクリックします。
+パイプラインのセットアップが開始するので順番に値を入力していきます。
 
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-17-640x204.png" alt="devops-hands-on-17" width="640" height="204" class="alignnone size-medium wp-image-259032" />
+| 入力項目                             | 値                                                       |
+| ------------------------------------ | -------------------------------------------------------- |
+| パイプライン名                       | `hands-on-pipeline`                                      |
+| サービスロール                       | 新しいサービスロール                                     |
+| ロール名                             | `AWSCodePipelineServiceRole-us-west-2-hands-on-pipeline` |
+| Allow AWS CodePipeline to create ... | ✔                                                        |
+| アーティファクトストア               | デフォルトの場所                                         |
 
-ソースプロバイダのセットアップが始まるので以下の表のように入力後、「次のステップ」をクリックします。
+次はソースプロバイダのセットアップが始まるので以下の表のように入力後、「次のステップ」をクリックします。
 
-| 入力項目         | 値                           |
-| ---------------- | ---------------------------- |
-| ソースプロバイダ | GitHub                       |
-| リポジトリ       | フォークしておいたリポジトリ |
-| ブランチ         | master                       |
+| 入力項目           | 値                           |
+| ------------------ | ---------------------------- |
+| ソースプロバイダ   | GitHub                       |
+| リポジトリ         | フォークしておいたリポジトリ |
+| ブランチ           | master                       |
+| 変更検出オプション | GitHub ウェブフック (推奨)   |
 
 ビルドプロバイダのセットアップが始まるので以下の表のように入力後、「ビルドプロジェクトの保存」をクリックしてから「次のステップ」をクリックします。
 
-| 入力項目                 | 値                                                                                            |
-| ------------------------ | --------------------------------------------------------------------------------------------- |
-| ビルドプロバイダ         | AWS CodeBuild                                                                                 |
-| プロジェクトの設定       | 新しいビルドプロジェクトを作成                                                                |
-| プロジェクト名           | hands-on-project                                                                              |
-| 環境イメージ             | AWS CodeBuild マネージド型イメージの使用                                                      |
-| OS                       | Ubuntu                                                                                        |
-| ランタイム               | Node.js                                                                                       |
-| バージョン               | aws/codebuild/nodejs:10.1.0                                                                   |
-| ビルド仕様               | ソースコードのルートディレクトリの buildspec.yml を使用                                       |
-| キャッシュ タイプ        | キャッシュなし                                                                                |
-| CodeBuild サービスロール | `アカウントから既存のロールを選択します`を選択し環境構築用スタックの出力の値を入力            |
-| VPC                      | No VPC                                                                                        |
-| 特権付与(アドバンスト内) | ✔                                                                                             |
+ビルドステージの設定画面になるので、ビルドプロバイダで`CodeBuild`を選択し、`Create Project`をクリック。
 
-デプロイプロバイダのセットアップが始まるのでプロバイダに「Amazon ECS」を入力後、「AWS CodeDeploy に新たにアプリケーションを作成します。」のリンクをクリックします。
+CodeBuild のプロジェクトの作成画面が表示されるので CodeBuild の設定項目を入力していきます。
 
-| 入力項目             | 値                              |
-| -------------------- | ------------------------------- |
-| デプロイプロバイダ   | Amazon ECS                      |
-| クラスター名         | hands-on-environment-ECSCluster |
-| サービス名           | hands-on-environment-ECSService |
-| イメージのファイル名 | `imagedefinitions.json`           |
+| プロジェクト名 | hands-on-project |
+| 環境イメージ | マネージド型イメージ |
+| OS | Ubuntu |
+| ランタイム | Node.js |
+| ランタイムバージョン | aws/codebuild/nodejs:10.1.0 |
+| Image version | Always use the latest image for this runtime version |
+| 特権付与 | チェックしない |
+| サービスロール | 新しいサービスロール |
+| ロール名 | `hands-on-codebuild-service-role` |
+| ビルド仕様 | buildspec.yml |
+
+最後にデプロイステージの設定を行います
+
+| 入力項目           | 値                      |
+| ------------------ | ----------------------- |
+| デプロイプロバイダ | CodeDeploy              |
+| アプリケーション名 | `hands-on-app`          |
+| デプロイグループ名 | `hands-on-deploy-group` |
 
 CodePipeline にアタッチする IAM Role の画面に変わるので、「ロールの作成」をクリック後、遷移する画面で「許可」をクリックします。
 
@@ -219,11 +226,11 @@ IAM Role の作成が完了したら「次のステップ」をクリックし�
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/ddf0495992f096549e7a7aa62043c03b-640x885.png" alt="" width="640" height="885" class="alignnone size-medium wp-image-348910" />
 
-`Staging`ステージまで緑色になり、デプロイが完了したところで一度正常にページにアクセスできることを確認します。
+`Staging`ステージまで緑色になり、デプロイが完了したところで最初に開いたの`https://<ALBのDNS名>/express/`にアクセスするとサンプルアプリケーションが表示されることを確認します。
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/1769187c2286f846c233341f03da13e9-640x207.png" alt="" width="640" height="207" class="alignnone size-medium wp-image-349210" />
 
-## 6. テストが失敗すると自動デプロイが止まるのを確認
+## 5. テストが失敗すると自動デプロイが止まるのを確認
 
 バグが混入した際に、テストで処理が失敗し、デプロイが途中で止まることを確認するため、フォークしたリポジトリのコードを修正します。
 
@@ -257,7 +264,7 @@ GitHub にプッシュすると、CodePipeline での処理が開始されます
 
 テストが自動で実行される環境が構築されていたため、バグの混入したバージョンがデプロイされるのを防ぐことができました！
 
-## 7. 再度正しいコードに戻して自動デプロイ
+## 6. 再度正しいコードに戻して自動デプロイ
 
 先程の修正をもとに戻すため、`src/model/fizzbuzz.js`　を開きます。
 
@@ -296,7 +303,7 @@ CodePipeline を使用することでデプロイやテストが自動で実行�
 
 - [「AWS と GitHub で始める DevOps ハンズオン」の資料を公開します！](https://dev.classmethod.jp/etc/aws-github-devops-hands-on/)
 
-### Pull Requestをビルドしたいパターン
+### Pull Request をビルドしたいパターン
 
 - [CodeBuild で GitHub のプルリクエストを自動ビルドして、結果を表示する](https://dev.classmethod.jp/cloud/aws/codebuild-github-pullrequest-settings/)
 
@@ -314,7 +321,7 @@ CloudFormation スタックおよびクローンした GitHub のリポジトリ
 TODO 画像等も含めて手順を正確に提示
 
 ### AWS
- 
+
 #### CodePipeline のパイプラインの削除
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/e8c7b85b815b9231b93b6c76a1331441-640x531.png" alt="" width="640" height="531" class="alignnone size-medium wp-image-354244" />
@@ -329,17 +336,17 @@ TODO 画像等も含めて手順を正確に提示
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/ae5122b2851970fae6d119adab33a263-640x309.png" alt="" width="640" height="309" class="alignnone size-medium wp-image-354247" />
 
-CodeBuild　の画面から、プロジェクト`hands-on-project`を選択した状態で、アクションのドロップダウンリストから削除をクリックします。
+CodeBuild 　の画面から、プロジェクト`hands-on-project`を選択した状態で、アクションのドロップダウンリストから削除をクリックします。
 
-#### IAM Role の削除　 CodePipeline用 CodeBuild用
+#### IAM Role の削除　 CodePipeline 用 CodeBuild 用
 
-CodeBuild用のロール`hands-on-environment-CodeBuild-ServiceRole`を削除します。
+CodeBuild 用のロール`hands-on-environment-CodeBuild-ServiceRole`を削除します。
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/899fb48d174d86e98f6bb281fd29727e-640x390.png" alt="" width="640" height="390" class="alignnone size-medium wp-image-354249" />
 
 `hands-on-environment-CodeBuild-ServiceRole`という名前のロールを選択し、ロールを削除します。
 
-CodePipelineでの他のプロジェクトが存在しない場合は`AWS-CodePipeline-Service`という名前のロールも同様の手順で削除しましょう。
+CodePipeline での他のプロジェクトが存在しない場合は`AWS-CodePipeline-Service`という名前のロールも同様の手順で削除しましょう。
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/b7f0d8a5fdc73ca64c3baaa31e0639ff-640x379.png" alt="" width="640" height="379" class="alignnone size-medium wp-image-354248" />
 
@@ -361,7 +368,7 @@ CodePipelineでの他のプロジェクトが存在しない場合は`AWS-CodePi
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/899ad3960898d06dacd6be39a3ca0f85-640x247.png" alt="" width="640" height="247" class="alignnone size-medium wp-image-354254" />
 
-ECSの画面の左側にある、リポジトリのリンクをクリックし、`hands-***`という名前のリポジトリの画面の移動します。
+ECS の画面の左側にある、リポジトリのリンクをクリックし、`hands-***`という名前のリポジトリの画面の移動します。
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/fc89af39613b29fc3112cbb093918216-640x197.png" alt="" width="640" height="197" class="alignnone size-medium wp-image-354255" />
 
@@ -371,13 +378,13 @@ ECSの画面の左側にある、リポジトリのリンクをクリックし�
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/496450dcfb095b95105cd9264d5d67af-640x354.png" alt="" width="640" height="354" class="alignnone size-medium wp-image-354256" />
 
-CloudFormationのコンソールから、`hands-on-environment`という名前のスタックを選択し、削除します
+CloudFormation のコンソールから、`hands-on-environment`という名前のスタックを選択し、削除します
 
 #### hands-on-task-definition の登録を解除
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/15a28e586fc12d481269df69037a1e76-640x388.png" alt="" width="640" height="388" class="alignnone size-medium wp-image-354257" />
 
-ECSの画面の左側にある、タスク定義のリンクをクリックし、`hands-on-environment-****`という名前のタスク定義の画面に移動します。
+ECS の画面の左側にある、タスク定義のリンクをクリックし、`hands-on-environment-****`という名前のタスク定義の画面に移動します。
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/6eece21cbe5c833bf500aab26afe0019-640x371.png" alt="" width="640" height="371" class="alignnone size-medium wp-image-354259" />
 
@@ -389,8 +396,8 @@ ECSの画面の左側にある、タスク定義のリンクをクリックし�
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/0539d520bebeb1e1782c3f33538578bb-640x214.png" alt="" width="640" height="214" class="alignnone size-medium wp-image-354260" />
 
-フォーク先リポジトリのSettingを開き、
+フォーク先リポジトリの Setting を開き、
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/3b7190c3bdf6c2d9e5afa64505c426d9-640x341.png" alt="" width="640" height="341" class="alignnone size-medium wp-image-354261" />
 
-一番下のDelete this Repositoryというボタンをクリック、確認ダイアログにリポジトリ名を入力して削除します。
+一番下の Delete this Repository というボタンをクリック、確認ダイアログにリポジトリ名を入力して削除します。
