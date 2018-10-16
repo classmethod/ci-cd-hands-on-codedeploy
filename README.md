@@ -87,18 +87,6 @@ buildspec.yml		package.json		test
 
 ## 3. ハンズオン用環境構築用の CloudFormation の実行
 
-今回 ECS でアプリケーションを動作させるにあたってサービスにリンクしたロールが作成されている必要があります。
-そのため、IAM のコンソールを開き、`AWSServiceRoleForECS`というロールがあるかを確認してください。
-ない場合はサービスにリンクしたロールがない状態ですので、タスクが失敗してしまいます。
-
-その場合は、以下のコマンドを実行するか
-
-```shell
-aws iam create-service-linked-role --aws-service-name ecs.amazonaws.com
-```
-
-空の ECS のクラスタを作成し、すぐに削除するなどして ECS のサービスにリンクしたロールが作成された状態にします。
-
 [Launch Stack](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/new?stackName=hands-on-environment&templateURL=https://s3-ap-northeast-1.amazonaws.com/ci-cd-hands-on-template/node/hands-on-environment.template.yaml)
 
 上のリンクより、ハンズオン用の環境を構築するための CloudFormation を実行します。
@@ -147,7 +135,7 @@ CodeDeploy のアプリケーションの画面からアプリケーションの
 | デプロイ設定 | CodeDeployDefault.HalfAtOnce |
 | ロードバランシングを有効にする | ✔ |
 | | Application Load Balancer または Network Load Balancer |
-| Choose a load balancer | `hands-on-environment-alb` |
+| Choose a load balancer | `hands-on-environment-TargetGroup` |
 
 
 ## 4. CodePipeline によるパイプラインの構築および自動デプロイの実行
@@ -193,6 +181,8 @@ CodePipeline/CodeBuild/CodeDeploy を使用したパイプラインを作成し�
 
 CodeBuild のプロジェクトの作成画面が表示されるので CodeBuild の設定項目を入力していきます。
 
+| 入力項目           | 値                           |
+| ------------------ | ---------------------------- |
 | プロジェクト名 | hands-on-project |
 | 環境イメージ | マネージド型イメージ |
 | OS | Ubuntu |
@@ -211,14 +201,6 @@ CodeBuild のプロジェクトの作成画面が表示されるので CodeBuild
 | デプロイプロバイダ | CodeDeploy              |
 | アプリケーション名 | `hands-on-app`          |
 | デプロイグループ名 | `hands-on-deploy-group` |
-
-CodePipeline にアタッチする IAM Role の画面に変わるので、「ロールの作成」をクリック後、遷移する画面で「許可」をクリックします。
-
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-21-640x363.png" alt="devops-hands-on-21" width="640" height="363" class="alignnone size-medium wp-image-259055" />
-
-IAM Role の作成が完了したら「次のステップ」をクリックします。
-
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-22-640x223.png" alt="devops-hands-on-22" width="640" height="223" class="alignnone size-medium wp-image-259056" />
 
 最後に確認画面が表示されるので、内容を確認後、「パイプラインの作成」をクリックします。
 
