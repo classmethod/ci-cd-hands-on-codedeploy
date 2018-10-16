@@ -206,7 +206,7 @@ CodeBuild のプロジェクトの作成画面が表示されるので CodeBuild
 
 すると、パイプラインが自動で開始されます。
 
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/ddf0495992f096549e7a7aa62043c03b-640x885.png" alt="" width="640" height="885" class="alignnone size-medium wp-image-348910" />
+<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/FireShot-Capture-14-AWS-Developer-Tools_-https___ap-northeast-1.console.aws_-640x319.png" alt="" width="640" height="319" class="alignnone size-medium wp-image-367740" />
 
 `Staging`ステージまで緑色になり、デプロイが完了したところで最初に開いたの`https://<ALBのDNS名>/express/`にアクセスするとサンプルアプリケーションが表示されることを確認します。
 
