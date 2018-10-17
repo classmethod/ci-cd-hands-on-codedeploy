@@ -87,7 +87,7 @@ buildspec.yml		package.json		test
 
 ## 3. ハンズオン用環境構築用の CloudFormation の実行
 
-[Launch Stack](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/new?stackName=hands-on-environment&templateURL=https://s3-ap-northeast-1.amazonaws.com/ci-cd-hands-on-template/node/hands-on-environment.template.yaml)
+[Launch Stack](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/new?stackName=hands-on-environment&templateURL=https://s3-ap-northeast-1.amazonaws.com/ci-cd-hands-on-template/codedeploy/hands-on-environment.template.yaml)
 
 上のリンクより、ハンズオン用の環境を構築するための CloudFormation を実行します。
 パラメータ画面でキーペアの名前を選択し、ログインが行えるようにします。
