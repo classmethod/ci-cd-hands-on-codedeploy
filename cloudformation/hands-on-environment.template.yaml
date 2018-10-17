@@ -424,6 +424,9 @@ Resources:
       Port: 80
       Protocol: HTTP
       UnhealthyThresholdCount: 5
+      TargetGroupAttributes:
+        - Key: deregistration_delay.timeout_seconds
+          Value: 30
       VpcId: !Ref VPC
 
   LoadBalancerListener:
