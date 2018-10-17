@@ -6,6 +6,10 @@ files:
     destination: /usr/src/app
 
 hooks:
+  BeforeInstall:
+    - location: hooks/before_install.sh
+      timeout: 300
+      runas: root
   ApplicationStart:
     - location: hooks/application_start.sh
       timeout: 300
