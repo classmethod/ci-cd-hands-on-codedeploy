@@ -244,7 +244,7 @@ $ git push origin master
 GitHub にプッシュすると、CodePipeline での処理が開始されます。
 しかし、CodeBuild でテストが失敗し、デプロイは実行されません。
 
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/6785bac4c64b2e508b1134aa19bed74d-640x908.png" alt="" width="640" height="908" class="alignnone size-medium wp-image-349032" />
+<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/81a4d10cefd55e9ef111104340d88aa3-640x359.png" alt="" width="640" height="359" class="alignnone size-medium wp-image-367757" />
 
 テストが自動で実行される環境が構築されていたため、バグの混入したバージョンがデプロイされるのを防ぐことができました！
 
@@ -271,7 +271,7 @@ $ git push origin master
 
 同様に自動で CodePipeline 上での処理が開始されます。
 
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/e6dddcd46828eb204b0eef8048c50e4f-640x957.png" alt="" width="640" height="957" class="alignnone size-medium wp-image-349044" />
+<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/729add485e7b8d5826db8874263b2508-640x357.png" alt="" width="640" height="357" class="alignnone size-medium wp-image-367750" />
 
 今度はテストが成功するため、デプロイが行われました。
 
