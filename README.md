@@ -58,11 +58,12 @@ $ git clone git@github.com:<ご自分のgithubのアカウント名>/ci-cd-hands
 クローンされたリポジトリのディレクトリに移動して中身を確認し、クローンが正しく行われたことを確認します。
 
 ```shell
-$ cd ci-cd-handson
+$ cd ci-cd-handson-codedeploy
 $ ls
-Dockerfile		cloudformation		src
-README.md		package-lock.json	template
-buildspec.yml		package.json		test
+README.md		hooks			template
+appspec.yml		package-lock.json	test
+buildspec.yml		package.json
+cloudformation		src
 ```
 
 ## 2. キーペアの作成
