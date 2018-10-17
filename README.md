@@ -128,10 +128,10 @@ CodeDeploy のアプリケーションの画面からアプリケーションの
 | 入力項目                           | 値               |
 | ---------------------------------- | ---------------- |
 | デプロイグループ名                | `hands-on-deploy-group`   |
-| サービスロール | `hands-on-environment-codedeploy-service-role` |
+| サービスロール | `hands-on-environment-CodeDeploy-ServiceRole` |
 | デプロイタイプ | インプレース |
 | Amazon EC2 Auto Scaling グループ | ✔ |
-| Auto Scaling グループ | `hands-on-environment-asg` |
+| Auto Scaling グループ | `hands-on-environment-EC2AutoScalingGroup-XXXXXXX` |
 | デプロイ設定 | CodeDeployDefault.HalfAtOnce |
 | ロードバランシングを有効にする | ✔ |
 | | Application Load Balancer または Network Load Balancer |
@@ -144,7 +144,7 @@ CodePipeline/CodeBuild/CodeDeploy を使用したパイプラインを作成し�
 
 今回作成するパイプラインは以下図の左側の部分です。
 
-![構成図](https://cacoo.com/diagrams/Bik1Om7JvTVGzpfj-5F49C.png)
+![構成図](https://cacoo.com/diagrams/Bik1Om7JvTVGzpfj-9A688.png)
 
 では、早速作成していきましょう。
 
