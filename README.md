@@ -35,7 +35,7 @@ $1 未満
 
 - GitHub にコードがプッシュされると CodePipeline での処理が開始されます。
 - CodeBuild ではテスト、Docker イメージの作成および作成したイメージの ECR へのプッシュを行います。
-- CodeBuild での処理が成功したら ECS に新しいバージョンのイメージがデプロイされます。
+- CodeBuild での処理が成功したら EC2 に新しいバージョンのイメージがデプロイされます。
 
 ## 2. サンプルアプリケーションのフォークおよびクローン
 
@@ -66,7 +66,7 @@ buildspec.yml		package.json
 cloudformation		src
 ```
 
-## 2. キーペアの作成
+## 3. キーペアの作成
 
 インスタンスに SSH でログインするためにキーペアを事前に作成しておきます。今回のハンズオンではインスタンスに SSH でログインしない想定ですが、デバッグ用途などで用意しておくと便利です。すでに作成している場合この作業は必要ありません。
 
@@ -97,7 +97,7 @@ cloudformation		src
 
 ![CloudFormationによってい構築される構成](https://cacoo.com/diagrams/Bik1Om7JvTVGzpfj-CBE40.png)
 
-アプリケーションの動作環境以外に後で CodeBuild で使用するための IAM 　 Role を作成しています。
+アプリケーションの動作環境以外に後で CodeBuild で使用するための IAM Role を作成しています。
 
 作成したスタックが `CREATE_COMPLETE` の状態になるまで待ちます。
 
@@ -107,7 +107,7 @@ cloudformation		src
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/FireShot-Capture-13-Test-Page-for-the-Nginx-HTTP-Server-on_-http___fugafug-alb-4hygylams8fk-13-640x341.png" alt="" width="640" height="341" class="alignnone size-medium wp-image-367711" />
 
-## 3. CodeDeploy の設定
+## 4. CodeDeploy の設定
 
 CodePipeline から指定できるデプロイグループを作成するため、先に CodeDeploy の設定を行っていきます。
 
@@ -120,26 +120,25 @@ CodeDeploy のアプリケーションの画面からアプリケーションの
 | アプリケーション名                 | `hands-on-app`   |
 | コンピューティングプラットフォーム | EC2/オンプレミス |
 
-入力項目を入力し、アプリケーションの作成をクリックすると、CodeDeployのアプリケーションが作成され、当該アプリケーションの詳細画面が表示されます。
+入力項目を入力し、アプリケーションの作成をクリックすると、CodeDeploy のアプリケーションが作成され、当該アプリケーションの詳細画面が表示されます。
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/801c72268e6b9258abcee851dd3ca369-640x344.png" alt="" width="640" height="344" class="alignnone size-medium wp-image-367726" />
 
 この画面からさらに「デプロイグループの作成」をクリックし、このアプリケーションにデプロイグループを作成していきます。
 
-| 入力項目                           | 値               |
-| ---------------------------------- | ---------------- |
-| デプロイグループ名                | `hands-on-deploy-group`   |
-| サービスロール | `hands-on-environment-CodeDeploy-ServiceRole` |
-| デプロイタイプ | インプレース |
-| Amazon EC2 Auto Scaling グループ | ✔ |
-| Auto Scaling グループ | `hands-on-environment-EC2AutoScalingGroup-XXXXXXX` |
-| デプロイ設定 | CodeDeployDefault.HalfAtOnce |
-| ロードバランシングを有効にする | ✔ |
-| | Application Load Balancer または Network Load Balancer |
-| Choose a load balancer | `hands-on-environment-TargetGroup` |
+| 入力項目                         | 値                                                     |
+| -------------------------------- | ------------------------------------------------------ |
+| デプロイグループ名               | `hands-on-deploy-group`                                |
+| サービスロール                   | `hands-on-environment-CodeDeploy-ServiceRole`          |
+| デプロイタイプ                   | インプレース                                           |
+| Amazon EC2 Auto Scaling グループ | ✔                                                      |
+| Auto Scaling グループ            | `hands-on-environment-EC2AutoScalingGroup-XXXXXXX`     |
+| デプロイ設定                     | CodeDeployDefault.HalfAtOnce                           |
+| ロードバランシングを有効にする   | ✔                                                      |
+|                                  | Application Load Balancer または Network Load Balancer |
+| Choose a load balancer           | `hands-on-environment-TargetGroup`                     |
 
-
-## 4. CodePipeline によるパイプラインの構築および自動デプロイの実行
+## 5. CodePipeline によるパイプラインの構築および自動デプロイの実行
 
 CodePipeline/CodeBuild/CodeDeploy を使用したパイプラインを作成していきます。
 
@@ -182,25 +181,25 @@ CodePipeline/CodeBuild/CodeDeploy を使用したパイプラインを作成し�
 
 CodeBuild のプロジェクトの作成画面が表示されるので CodeBuild の設定項目を入力していきます。
 
-| 入力項目           | 値                           |
-| ------------------ | ---------------------------- |
-| プロジェクト名 | hands-on-project |
-| 環境イメージ | マネージド型イメージ |
-| OS | Ubuntu |
-| ランタイム | Node.js |
-| ランタイムバージョン | aws/codebuild/nodejs:10.1.0 |
-| Image version | Always use the latest image for this runtime version |
-| 特権付与 | チェックしない |
-| サービスロール | 新しいサービスロール |
-| ロール名 | `hands-on-codebuild-service-role` |
-| AWS CodeBuild にこのサービスロールの編集を許可し、このビルドプロジェクトでの使用を可能にする | チェックしない |
-| ビルド仕様 | buildspec.yml |
+| 入力項目                                                                                     | 値                                                   |
+| -------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| プロジェクト名                                                                               | hands-on-project                                     |
+| 環境イメージ                                                                                 | マネージド型イメージ                                 |
+| OS                                                                                           | Ubuntu                                               |
+| ランタイム                                                                                   | Node.js                                              |
+| ランタイムバージョン                                                                         | aws/codebuild/nodejs:10.1.0                          |
+| Image version                                                                                | Always use the latest image for this runtime version |
+| 特権付与                                                                                     | チェックしない                                       |
+| サービスロール                                                                               | 既存のサービスロール                                 |
+| ロール名                                                                                     | `hands-on-environment-CodeBuild-ServiceRole`         |
+| AWS CodeBuild にこのサービスロールの編集を許可し、このビルドプロジェクトでの使用を可能にする | チェックしない                                       |
+| ビルド仕様                                                                                   | buildspec.yml                                        |
 
 最後にデプロイステージの設定を行います
 
 | 入力項目           | 値                      |
 | ------------------ | ----------------------- |
-| デプロイプロバイダ | CodeDeploy              |
+| デプロイプロバイダ | AWS CodeDeploy          |
 | アプリケーション名 | `hands-on-app`          |
 | デプロイグループ名 | `hands-on-deploy-group` |
 
@@ -214,7 +213,7 @@ CodeBuild のプロジェクトの作成画面が表示されるので CodeBuild
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/1769187c2286f846c233341f03da13e9-640x207.png" alt="" width="640" height="207" class="alignnone size-medium wp-image-349210" />
 
-## 5. テストが失敗すると自動デプロイが止まるのを確認
+## 6. テストが失敗すると自動デプロイが止まるのを確認
 
 バグが混入した際に、テストで処理が失敗し、デプロイが途中で止まることを確認するため、フォークしたリポジトリのコードを修正します。
 
@@ -248,7 +247,7 @@ GitHub にプッシュすると、CodePipeline での処理が開始されます
 
 テストが自動で実行される環境が構築されていたため、バグの混入したバージョンがデプロイされるのを防ぐことができました！
 
-## 6. 再度正しいコードに戻して自動デプロイ
+## 7. 再度正しいコードに戻して自動デプロイ
 
 先程の修正をもとに戻すため、`src/model/fizzbuzz.js`　を開きます。
 
@@ -296,5 +295,6 @@ CodePipeline を使用することでデプロイやテストが自動で実行�
 - [CodeDeploy を利用した Lambda のバージョン間の段階デプロイ](https://dev.classmethod.jp/cloud/aws/aws-reinvent-codedeploy-lambda/)
 - [AWS SAM を通して CodeDeploy を利用した Lambda 関数のデプロイを理解する](https://dev.classmethod.jp/server-side/serverless/understanding-lambda-deploy-with-codedeploy-using-aws-sam/)
 
-### EKSでパターン
-- [Kustomize + CodePipeline + CodeBuildでEKSに継続的デプロイしてみた](https://dev.classmethod.jp/cloud/aws/kustomize-codepipeline-codebuild/)
+### EKS でパターン
+
+- [Kustomize + CodePipeline + CodeBuild で EKS に継続的デプロイしてみた](https://dev.classmethod.jp/cloud/aws/kustomize-codepipeline-codebuild/)
