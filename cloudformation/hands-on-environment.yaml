@@ -291,6 +291,7 @@ Resources:
       Path: /
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforAWSCodeDeploy
+        - arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM
 
   EC2IAMProfile:
     Type: AWS::IAM::InstanceProfile
@@ -349,8 +350,12 @@ Resources:
           files:
             /etc/nginx/default.d/app.conf:
               content: |
-                location /express/ {
+                location /express {
                     proxy_pass   http://127.0.0.1:3000/;
+                }
+
+                location /health {
+                  empty_gif;
                 }
               mode: "000644"
               owner: root
@@ -415,7 +420,7 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
       HealthCheckIntervalSeconds: 5
-      HealthCheckPath: /
+      HealthCheckPath: /health
       HealthCheckProtocol: HTTP
       HealthCheckTimeoutSeconds: 3
       HealthyThresholdCount: 2
@@ -439,6 +444,6 @@ Resources:
       Port: 80
       Protocol: HTTP
 Outputs:
-  ALBDNSName:
+  AppURL:
     Description: Endpoint URL of ALB
-    Value: !Sub http://${ALB.DNSName}
+    Value: !Sub http://${ALB.DNSName}/express
