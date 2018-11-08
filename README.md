@@ -34,7 +34,7 @@ $1 未満
 今回は上記の図のような構成を構築します。
 
 - GitHub にコードがプッシュされると CodePipeline での処理が開始されます。
-- CodeBuild ではテスト、Docker イメージの作成および作成したイメージの ECR へのプッシュを行います。
+- CodeBuild ではテストを実行します。
 - CodeBuild での処理が成功したら EC2 に新しいバージョンのイメージがデプロイされます。
 
 ## 2. サンプルアプリケーションのフォークおよびクローン
@@ -66,29 +66,9 @@ buildspec.yml		package.json
 cloudformation		src
 ```
 
-## 3. キーペアの作成
-
-インスタンスに SSH でログインするためにキーペアを事前に作成しておきます。今回のハンズオンではインスタンスに SSH でログインしない想定ですが、デバッグ用途などで用意しておくと便利です。すでに作成している場合この作業は必要ありません。
-
-- マネジメントコンソールのトップ画面より「EC2」をクリック
-
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-1-640x474.png" alt="devops-hands-on-1" width="640" height="474" class="alignnone size-medium wp-image-258966" />
-
-- 「EC2 ダッシュボード」から「キーペア」をクリック
-
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-2-640x409.png" alt="devops-hands-on-2" width="640" height="409" class="alignnone size-medium wp-image-258967" />
-
-- 「キーペアの作成」をクリックしてキーペア名をわかりやすい名前(hands-on など)で入力
-
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-3-640x298.png" alt="devops-hands-on-3" width="640" height="298" class="alignnone size-medium wp-image-258968" />
-
-- 「作成」をクリックするとキーペアのダウンロード画面が表示されるので、任意の場所に保存
-
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-4-640x421.png" alt="devops-hands-on-4" width="640" height="421" class="alignnone size-medium wp-image-258969" />
-
 ## 3. ハンズオン用環境構築用の CloudFormation の実行
 
-[Launch Stack](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/new?stackName=hands-on-environment&templateURL=https://s3-ap-northeast-1.amazonaws.com/ci-cd-hands-on-template/codedeploy/hands-on-environment.template.yaml)
+[Launch Stack](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/new?stackName=hands-on-environment&templateURL=https://s3-ap-northeast-1.amazonaws.com/ci-cd-hands-on-template/codedeploy/hands-on-environment.yaml)
 
 上のリンクより、ハンズオン用の環境を構築するための CloudFormation を実行します。
 パラメータ画面でキーペアの名前を選択し、ログインが行えるようにします。
@@ -103,7 +83,7 @@ cloudformation		src
 
 ### 動作確認
 
-作成したスタックの出力に`ALBDNSName`というキーでアドレスが出力されています。こちらにアクセスすると Nginx の Welcome ページが表示されます。
+作成したスタックの出力に`ALBDNSName`というキーでURLが出力されています。こちらにアクセスすると Nginx の Welcome ページが表示されます。まだソースコードがデプロイされていないため、エラー画面が表示されています。
 
 <img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/FireShot-Capture-13-Test-Page-for-the-Nginx-HTTP-Server-on_-http___fugafug-alb-4hygylams8fk-13-640x341.png" alt="" width="640" height="341" class="alignnone size-medium wp-image-367711" />
 

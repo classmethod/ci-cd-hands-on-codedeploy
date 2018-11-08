@@ -4,11 +4,6 @@ Description:
   'Hands-on Environment template'
 
 Parameters:
-
-  KeyPairName:
-    Description: Please enter the key pair name.
-    Type: AWS::EC2::KeyPair::KeyName 
-
   VpcCIDR: 
     Description: Please enter the IP range (CIDR notation) for this VPC
     Type: String
