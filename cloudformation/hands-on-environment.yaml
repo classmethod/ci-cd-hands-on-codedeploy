@@ -441,3 +441,6 @@ Outputs:
   AppURL:
     Description: Endpoint URL of ALB
     Value: !Sub http://${ALB.DNSName}/express
+  SessionManagerURL:
+    Description: URL of Session SessionManagerURL
+    Value: !Sub https://ap-northeast-1.console.aws.amazon.com/systems-manager/session-manager/sessions?region=${AWS::Region}
