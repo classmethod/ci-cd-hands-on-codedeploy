@@ -302,7 +302,7 @@ Resources:
       ImageId: !Ref AMIId
       SecurityGroups:
         - !Ref EC2SecurityGroup
-      InstanceType: t3.nano
+      InstanceType: t2.small
       IamInstanceProfile: !Ref EC2IAMProfile
       UserData:
         Fn::Base64: !Sub |
