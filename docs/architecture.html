@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="fork.html" />
+    <link rel="next" href="check-before-deploy.html" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="preparation.html" />
     
 
     </head>
@@ -102,12 +102,12 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="architecture.html">
+        <li class="chapter " data-level="1.2" data-path="preparation.html">
             
-                <a href="architecture.html">
+                <a href="preparation.html">
             
                     
-                    ハンズオンで構築する構成
+                    パイプライン構築の準備
             
                 </a>
             
@@ -115,12 +115,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="fork.html">
+        <li class="chapter active" data-level="1.3" data-path="architecture.html">
             
-                <a href="fork.html">
+                <a href="architecture.html">
             
                     
-                    サンプルアプリケーションのフォーク
+                    ハンズオンで構築する構成
             
                 </a>
             
@@ -185,7 +185,7 @@
                 <a href="mackerel-check.html">
             
                     
-                    Mackerel のチェックを挟み込む
+                    Mackerel のアラートをチェックする
             
                 </a>
             
@@ -198,7 +198,7 @@
                 <a href="stop-on-alert-fired.html">
             
                     
-                    本番で障害が起きていたら
+                    アラート発報時にデプロイ
             
                 </a>
             
@@ -266,10 +266,11 @@
                                 
                                 <h2 id="&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;&#x3067;&#x69CB;&#x7BC9;&#x3059;&#x308B;&#x69CB;&#x6210;">&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;&#x3067;&#x69CB;&#x7BC9;&#x3059;&#x308B;&#x69CB;&#x6210;</h2>
 <p><img src="https://cacoo.com/diagrams/Cl9H3qce7UsvLRVO-521EE.png" alt="&#x69CB;&#x6210;&#x56F3;"></p>
+<p><img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/12/154a4e54cd8645dd7c7c392c5b8358d4.png" alt=""></p>
 <p>&#x4ECA;&#x56DE;&#x306F;&#x4E0A;&#x8A18;&#x306E;&#x56F3;&#x306E;&#x3088;&#x3046;&#x306A;&#x69CB;&#x6210;&#x3092;&#x69CB;&#x7BC9;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <ul>
 <li>GitHub &#x306B;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x30D7;&#x30C3;&#x30B7;&#x30E5;&#x3055;&#x308C;&#x308B;&#x3068; CodePipeline &#x3067;&#x306E;&#x51E6;&#x7406;&#x304C;&#x958B;&#x59CB;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</li>
-<li>&#x30C6;&#x30B9;&#x30C8;&#x7528; CodeBuild &#x3067;&#x306F;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x307E;&#x3059;&#x3002;</li>
+<li>&#x30C6;&#x30B9;&#x30C8;&#x5B9F;&#x884C;&#x7528; CodeBuild &#x3067;&#x306F;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x307E;&#x3059;&#x3002;</li>
 <li>&#x30A2;&#x30E9;&#x30FC;&#x30C8;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x7528; CodeBuild &#x3067;&#x306F;&#x30A2;&#x30E9;&#x30FC;&#x30C8;&#x304C;&#x767A;&#x5831;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x304B;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3057;&#x307E;&#x3059;</li>
 <li>CodeBuild &#x3067;&#x306E;&#x51E6;&#x7406;&#x304C;&#x6210;&#x529F;&#x3057;&#x305F;&#x3089; EC2 &#x306B;&#x65B0;&#x3057;&#x3044;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x306E;&#x30A4;&#x30E1;&#x30FC;&#x30B8;&#x304C;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</li>
 </ul>
@@ -300,12 +301,12 @@
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                <a href="preparation.html" class="navigation navigation-prev " aria-label="Previous page: パイプライン構築の準備">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="fork.html" class="navigation navigation-next " aria-label="Next page: サンプルアプリケーションのフォーク">
+                <a href="check-before-deploy.html" class="navigation navigation-next " aria-label="Next page: 動作確認">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -316,7 +317,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ハンズオンで構築する構成","level":"1.2","depth":1,"next":{"title":"サンプルアプリケーションのフォーク","level":"1.3","depth":1,"path":"fork.md","ref":"fork.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"architecture.md","mtime":"2018-11-26T06:28:52.741Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-26T06:50:31.020Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ハンズオンで構築する構成","level":"1.3","depth":1,"next":{"title":"動作確認","level":"1.4","depth":1,"path":"check-before-deploy.md","ref":"check-before-deploy.md","articles":[]},"previous":{"title":"パイプライン構築の準備","level":"1.2","depth":1,"path":"preparation.md","ref":"preparation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["copy-code-button"],"pluginsConfig":{"copy-code-button":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"architecture.md","mtime":"2018-12-03T00:27:40.177Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-03T03:33:46.068Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -324,6 +325,10 @@
         
     <script src="gitbook/gitbook.js"></script>
     <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>

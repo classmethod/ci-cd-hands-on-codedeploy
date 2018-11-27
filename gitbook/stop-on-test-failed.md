@@ -2,7 +2,7 @@
 
 CodePipeline を構築し、自動デプロイが開始されましたが Build フェーズで失敗してしまいました。
 
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/81a4d10cefd55e9ef111104340d88aa3-640x359.png" alt="" width="640" height="359" class="alignnone size-medium wp-image-367757" />
+![](https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/81a4d10cefd55e9ef111104340d88aa3.png)
 
 これは、事前にサンプルアプリケーションのリポジトリにテストが通らないようにバグを仕込んでおいたためです。
 
@@ -26,6 +26,11 @@ if (i % 15 == 0) {
 
 すると、自動で CodePipeline 上での処理が開始されます。
 
-<img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/729add485e7b8d5826db8874263b2508-640x357.png" alt="" width="640" height="357" class="alignnone size-medium wp-image-367750" />
+![](https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/729add485e7b8d5826db8874263b2508.png)
 
-今度はテストが成功するため、デプロイが行われました。
+今度はテストが成功するため、デプロイまで正しく処理が行われました。
+
+ここまでで最初のデプロイが完了するため、
+動作確認でアクセスした URL にアクセスすると、簡単な FizzBuzz のアプリが表示されます。
+
+![](https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/1769187c2286f846c233341f03da13e9.png)

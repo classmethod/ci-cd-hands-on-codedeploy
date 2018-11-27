@@ -102,12 +102,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="architecture.html">
+        <li class="chapter " data-level="1.2" data-path="preparation.html">
             
-                <a href="architecture.html">
+                <a href="preparation.html">
             
                     
-                    ハンズオンで構築する構成
+                    パイプライン構築の準備
             
                 </a>
             
@@ -115,12 +115,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="fork.html">
+        <li class="chapter " data-level="1.3" data-path="architecture.html">
             
-                <a href="fork.html">
+                <a href="architecture.html">
             
                     
-                    サンプルアプリケーションのフォーク
+                    ハンズオンで構築する構成
             
                 </a>
             
@@ -185,7 +185,7 @@
                 <a href="mackerel-check.html">
             
                     
-                    Mackerel のチェックを挟み込む
+                    Mackerel のアラートをチェックする
             
                 </a>
             
@@ -198,7 +198,7 @@
                 <a href="stop-on-alert-fired.html">
             
                     
-                    本番で障害が起きていたら
+                    アラート発報時にデプロイ
             
                 </a>
             
@@ -266,7 +266,7 @@
                                 
                                 <h2 id="&#x30C6;&#x30B9;&#x30C8;&#x306B;&#x5931;&#x6557;&#xFF01;">&#x30C6;&#x30B9;&#x30C8;&#x306B;&#x5931;&#x6557;&#xFF01;</h2>
 <p>CodePipeline &#x3092;&#x69CB;&#x7BC9;&#x3057;&#x3001;&#x81EA;&#x52D5;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x304C;&#x958B;&#x59CB;&#x3055;&#x308C;&#x307E;&#x3057;&#x305F;&#x304C; Build &#x30D5;&#x30A7;&#x30FC;&#x30BA;&#x3067;&#x5931;&#x6557;&#x3057;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<p><img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/81a4d10cefd55e9ef111104340d88aa3-640x359.png" alt="" width="640" height="359" class="alignnone size-medium wp-image-367757"></p>
+<p><img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/81a4d10cefd55e9ef111104340d88aa3.png" alt=""></p>
 <p>&#x3053;&#x308C;&#x306F;&#x3001;&#x4E8B;&#x524D;&#x306B;&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30EA;&#x30DD;&#x30B8;&#x30C8;&#x30EA;&#x306B;&#x30C6;&#x30B9;&#x30C8;&#x304C;&#x901A;&#x3089;&#x306A;&#x3044;&#x3088;&#x3046;&#x306B;&#x30D0;&#x30B0;&#x3092;&#x4ED5;&#x8FBC;&#x3093;&#x3067;&#x304A;&#x3044;&#x305F;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p>
 <p>&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x306E;&#x4E00;&#x9023;&#x306E;&#x6D41;&#x308C;&#x306E;&#x4E2D;&#x3067;&#x30C6;&#x30B9;&#x30C8;&#x304C;&#x81EA;&#x52D5;&#x3067;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;&#x4ED5;&#x7D44;&#x307F;&#x304C;&#x69CB;&#x7BC9;&#x3055;&#x308C;&#x3066;&#x3044;&#x305F;&#x305F;&#x3081;&#x3001;&#x30D0;&#x30B0;&#x306E;&#x6DF7;&#x5165;&#x3057;&#x305F;&#x30BD;&#x30FC;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x3055;&#x308C;&#x308B;&#x306E;&#x3092;&#x9632;&#x3050;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3057;&#x305F;&#xFF01;</p>
 <h3 id="&#x30D0;&#x30B0;&#x3092;&#x76F4;&#x3059;">&#x30D0;&#x30B0;&#x3092;&#x76F4;&#x3059;</h3>
@@ -276,8 +276,11 @@
 <pre><code>if (i % 15 == 0) {
 </code></pre><p>&#x306E;&#x3088;&#x3046;&#x306B;&#x4FEE;&#x6B63;&#x3057;&#x3001;master &#x306B;&#x30B3;&#x30DF;&#x30C3;&#x30C8;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <p>&#x3059;&#x308B;&#x3068;&#x3001;&#x81EA;&#x52D5;&#x3067; CodePipeline &#x4E0A;&#x3067;&#x306E;&#x51E6;&#x7406;&#x304C;&#x958B;&#x59CB;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p><img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/729add485e7b8d5826db8874263b2508-640x357.png" alt="" width="640" height="357" class="alignnone size-medium wp-image-367750"></p>
-<p>&#x4ECA;&#x5EA6;&#x306F;&#x30C6;&#x30B9;&#x30C8;&#x304C;&#x6210;&#x529F;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x304C;&#x884C;&#x308F;&#x308C;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p><img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/729add485e7b8d5826db8874263b2508.png" alt=""></p>
+<p>&#x4ECA;&#x5EA6;&#x306F;&#x30C6;&#x30B9;&#x30C8;&#x304C;&#x6210;&#x529F;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x307E;&#x3067;&#x6B63;&#x3057;&#x304F;&#x51E6;&#x7406;&#x304C;&#x884C;&#x308F;&#x308C;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p>&#x3053;&#x3053;&#x307E;&#x3067;&#x3067;&#x6700;&#x521D;&#x306E;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x304C;&#x5B8C;&#x4E86;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;
+&#x52D5;&#x4F5C;&#x78BA;&#x8A8D;&#x3067;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3057;&#x305F; URL &#x306B;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3059;&#x308B;&#x3068;&#x3001;&#x7C21;&#x5358;&#x306A; FizzBuzz &#x306E;&#x30A2;&#x30D7;&#x30EA;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p><img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/1769187c2286f846c233341f03da13e9.png" alt=""></p>
 
                                 
                                 </section>
@@ -310,7 +313,7 @@
                 </a>
                 
                 
-                <a href="mackerel-check.html" class="navigation navigation-next " aria-label="Next page: Mackerel のチェックを挟み込む">
+                <a href="mackerel-check.html" class="navigation navigation-next " aria-label="Next page: Mackerel のアラートをチェックする">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -321,7 +324,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"テストに失敗！","level":"1.7","depth":1,"next":{"title":"Mackerel のチェックを挟み込む","level":"1.8","depth":1,"path":"mackerel-check.md","ref":"mackerel-check.md","articles":[]},"previous":{"title":"CodePipeline の設定","level":"1.6","depth":1,"path":"codepipeline.md","ref":"codepipeline.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"stop-on-test-failed.md","mtime":"2018-11-26T06:39:09.301Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-26T06:50:31.020Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"テストに失敗！","level":"1.7","depth":1,"next":{"title":"Mackerel のアラートをチェックする","level":"1.8","depth":1,"path":"mackerel-check.md","ref":"mackerel-check.md","articles":[]},"previous":{"title":"CodePipeline の設定","level":"1.6","depth":1,"path":"codepipeline.md","ref":"codepipeline.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["copy-code-button"],"pluginsConfig":{"copy-code-button":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"stop-on-test-failed.md","mtime":"2018-11-27T05:23:57.461Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-03T03:33:46.068Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -329,6 +332,10 @@
         
     <script src="gitbook/gitbook.js"></script>
     <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>

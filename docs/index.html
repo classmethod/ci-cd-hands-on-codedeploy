@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="architecture.html" />
+    <link rel="next" href="preparation.html" />
     
     
 
@@ -100,12 +100,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="architecture.html">
+        <li class="chapter " data-level="1.2" data-path="preparation.html">
             
-                <a href="architecture.html">
+                <a href="preparation.html">
             
                     
-                    ハンズオンで構築する構成
+                    パイプライン構築の準備
             
                 </a>
             
@@ -113,12 +113,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="fork.html">
+        <li class="chapter " data-level="1.3" data-path="architecture.html">
             
-                <a href="fork.html">
+                <a href="architecture.html">
             
                     
-                    サンプルアプリケーションのフォーク
+                    ハンズオンで構築する構成
             
                 </a>
             
@@ -183,7 +183,7 @@
                 <a href="mackerel-check.html">
             
                     
-                    Mackerel のチェックを挟み込む
+                    Mackerel のアラートをチェックする
             
                 </a>
             
@@ -196,7 +196,7 @@
                 <a href="stop-on-alert-fired.html">
             
                     
-                    本番で障害が起きていたら
+                    アラート発報時にデプロイ
             
                 </a>
             
@@ -263,19 +263,6 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="cicd-&#x74B0;&#x5883;&#x69CB;&#x7BC9;&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;">CI/CD &#x74B0;&#x5883;&#x69CB;&#x7BC9;&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;</h1>
-<h2 id="&#x30A2;&#x30B8;&#x30A7;&#x30F3;&#x30C0;">&#x30A2;&#x30B8;&#x30A7;&#x30F3;&#x30C0;</h2>
-<h3 id="&#x5FC5;&#x8981;&#x306A;&#x4E8B;&#x524D;&#x6E96;&#x5099;">&#x5FC5;&#x8981;&#x306A;&#x4E8B;&#x524D;&#x6E96;&#x5099;</h3>
-<ul>
-<li>&#x81EA;&#x5206;&#x306E; AWS &#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x306E;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x30ED;&#x30B0;&#x30A4;&#x30F3;&#x3059;&#x308B;&#x3002;&#xFF08;&#x3067;&#x304D;&#x308C;&#x3070; EC2-Classic &#x306B;&#x5BFE;&#x5FDC;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x304C;&#x671B;&#x307E;&#x3057;&#x3044;&#x3067;&#x3059;&#xFF09;</li>
-<li><strong>&#x6771;&#x4EAC;&#x30EA;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x306E;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x3066;&#x304A;&#x304F;</strong></li>
-<li>&#x81EA;&#x5206;&#x306E; GitHub &#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x306B;&#x30ED;&#x30B0;&#x30A4;&#x30F3;&#x3059;&#x308B;&#x3002;</li>
-<li>Git &#x3092;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x53CA;&#x3073;&#x30BB;&#x30C3;&#x30C8;&#x30A2;&#x30C3;&#x30D7;&#x3059;&#x308B;&#x3002;&#xFF08;&#x81EA;&#x5206;&#x306E;&#x81EA;&#x5206;&#x306E;&#x30EA;&#x30DD;&#x30B8;&#x30C8;&#x30EA;&#x304B;&#x3089;&#x306E;&#x30AF;&#x30ED;&#x30FC;&#x30F3;&#x304A;&#x3088;&#x3073;&#x30D7;&#x30C3;&#x30B7;&#x30E5;&#x304C;&#x884C;&#x3048;&#x308B;&#x72B6;&#x614B;&#x306B;&#x3057;&#x3066;&#x304A;&#x3044;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;&#xFF09;</li>
-<li>&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x304B;&#x3089;&#x8D77;&#x52D5;&#x3057;&#x30B3;&#x30FC;&#x30C9;&#x306E;&#x7DE8;&#x96C6;&#x304C;&#x884C;&#x3048;&#x308B;&#x30A8;&#x30C7;&#x30A3;&#x30BF;(Vim, Emacs, VSCode &#x7B49;)</li>
-</ul>
-<h3 id="&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;&#x306E;&#x76EE;&#x7684;">&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;&#x306E;&#x76EE;&#x7684;</h3>
-<p>CodePipeline &#x3092;&#x4F7F;&#x7528;&#x3057;&#x3066;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x306E;&#x81EA;&#x52D5;&#x5316;&#x304C;&#x7C21;&#x5358;&#x306B;&#x884C;&#x3048;&#x308B;&#x3053;&#x3068;&#x3092;&#x4F53;&#x611F;&#x3057;&#x3066;&#x3044;&#x305F;&#x3060;&#x304D;&#x3001;&#x5B9F;&#x969B;&#x306B;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x306E;&#x81EA;&#x52D5;&#x5316;&#x306B;&#x53D6;&#x308A;&#x7D44;&#x3080;&#x304D;&#x3063;&#x304B;&#x3051;&#x306B;&#x3057;&#x3066;&#x3044;&#x305F;&#x3060;&#x304F;&#x3002;</p>
-<h3 id="&#x3053;&#x306E;&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;&#x3067;&#x304B;&#x304B;&#x308B;-aws-&#x306E;&#x8CBB;&#x7528;">&#x3053;&#x306E;&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;&#x3067;&#x304B;&#x304B;&#x308B; AWS &#x306E;&#x8CBB;&#x7528;</h3>
-<p>$1 &#x672A;&#x6E80;</p>
 <h2 id="&#x53C2;&#x8003;&#x8CC7;&#x6599;">&#x53C2;&#x8003;&#x8CC7;&#x6599;</h2>
 <h3 id="ec2-&#x306B;-codedeploy-&#x3067;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x3059;&#x308B;&#x30D1;&#x30BF;&#x30FC;&#x30F3;">EC2 &#x306B; CodeDeploy &#x3067;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x3059;&#x308B;&#x30D1;&#x30BF;&#x30FC;&#x30F3;</h3>
 <ul>
@@ -322,7 +309,7 @@
             
                 
                 
-                <a href="architecture.html" class="navigation navigation-next navigation-unique" aria-label="Next page: ハンズオンで構築する構成">
+                <a href="preparation.html" class="navigation navigation-next navigation-unique" aria-label="Next page: パイプライン構築の準備">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -333,7 +320,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"ハンズオンで構築する構成","level":"1.2","depth":1,"path":"architecture.md","ref":"architecture.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2018-11-26T05:20:47.554Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-26T06:50:31.020Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"パイプライン構築の準備","level":"1.2","depth":1,"path":"preparation.md","ref":"preparation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["copy-code-button"],"pluginsConfig":{"copy-code-button":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2018-12-03T01:10:52.262Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-03T03:33:46.068Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -341,6 +328,10 @@
         
     <script src="gitbook/gitbook.js"></script>
     <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>

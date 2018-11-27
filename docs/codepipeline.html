@@ -102,12 +102,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="architecture.html">
+        <li class="chapter " data-level="1.2" data-path="preparation.html">
             
-                <a href="architecture.html">
+                <a href="preparation.html">
             
                     
-                    ハンズオンで構築する構成
+                    パイプライン構築の準備
             
                 </a>
             
@@ -115,12 +115,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="fork.html">
+        <li class="chapter " data-level="1.3" data-path="architecture.html">
             
-                <a href="fork.html">
+                <a href="architecture.html">
             
                     
-                    サンプルアプリケーションのフォーク
+                    ハンズオンで構築する構成
             
                 </a>
             
@@ -185,7 +185,7 @@
                 <a href="mackerel-check.html">
             
                     
-                    Mackerel のチェックを挟み込む
+                    Mackerel のアラートをチェックする
             
                 </a>
             
@@ -198,7 +198,7 @@
                 <a href="stop-on-alert-fired.html">
             
                     
-                    本番で障害が起きていたら
+                    アラート発報時にデプロイ
             
                 </a>
             
@@ -265,14 +265,14 @@
                                 <section class="normal markdown-section">
                                 
                                 <h2 id="codepipeline-&#x306B;&#x3088;&#x308B;&#x30D1;&#x30A4;&#x30D7;&#x30E9;&#x30A4;&#x30F3;&#x306E;&#x69CB;&#x7BC9;&#x304A;&#x3088;&#x3073;&#x81EA;&#x52D5;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x306E;&#x5B9F;&#x884C;">CodePipeline &#x306B;&#x3088;&#x308B;&#x30D1;&#x30A4;&#x30D7;&#x30E9;&#x30A4;&#x30F3;&#x306E;&#x69CB;&#x7BC9;&#x304A;&#x3088;&#x3073;&#x81EA;&#x52D5;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x306E;&#x5B9F;&#x884C;</h2>
-<p>CodePipeline/CodeBuild/CodeDeploy &#x3092;&#x4F7F;&#x7528;&#x3057;&#x305F;&#x30D1;&#x30A4;&#x30D7;&#x30E9;&#x30A4;&#x30F3;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>CodeDeploy &#x306E;&#x8A2D;&#x5B9A;&#x304C;&#x6E08;&#x3093;&#x3060;&#x3068;&#x3053;&#x308D;&#x3067;&#x3001;CodePipeline/CodeBuild/CodeDeploy &#x3092;&#x4F7F;&#x7528;&#x3057;&#x305F;&#x30D1;&#x30A4;&#x30D7;&#x30E9;&#x30A4;&#x30F3;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
 <p>&#x4ECA;&#x56DE;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x30D1;&#x30A4;&#x30D7;&#x30E9;&#x30A4;&#x30F3;&#x306F;&#x4EE5;&#x4E0B;&#x56F3;&#x306E;&#x5DE6;&#x5074;&#x306E;&#x90E8;&#x5206;&#x3067;&#x3059;&#x3002;</p>
-<p><img src="https://cacoo.com/diagrams/Bik1Om7JvTVGzpfj-9A688.png" alt="&#x69CB;&#x6210;&#x56F3;"></p>
+<p><img src="https://cacoo.com/diagrams/Cl9H3qce7UsvLRVO-521EE.png" alt="&#x69CB;&#x6210;&#x56F3;"></p>
 <p>&#x3067;&#x306F;&#x3001;&#x65E9;&#x901F;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
 <p>&#x30DE;&#x30CD;&#x30B8;&#x30E1;&#x30F3;&#x30C8;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306E;&#x30C8;&#x30C3;&#x30D7;&#x753B;&#x9762;&#x3088;&#x308A;&#x300C;CodePipeline&#x300D;&#x3092;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p><img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-15-640x195.png" alt="devops-hands-on-15" width="640" height="195" class="alignnone size-medium wp-image-259029"></p>
+<p><img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2017/05/devops-hands-on-15.png" alt=""></p>
 <p>&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306A;&#x753B;&#x9762;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;&#x306E;&#x3067;&#x300C;&#x30D1;&#x30A4;&#x30D7;&#x30E9;&#x30A4;&#x30F3;&#x306E;&#x4F5C;&#x6210;&#x300D;&#x3092;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p><img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/3a19eb848252813419c880402c423c1e-640x214.png" alt="" width="640" height="214" class="alignnone size-medium wp-image-367717"></p>
+<p><img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/3a19eb848252813419c880402c423c1e.png" alt=""></p>
 <p>&#x30D1;&#x30A4;&#x30D7;&#x30E9;&#x30A4;&#x30F3;&#x306E;&#x30BB;&#x30C3;&#x30C8;&#x30A2;&#x30C3;&#x30D7;&#x304C;&#x958B;&#x59CB;&#x3059;&#x308B;&#x306E;&#x3067;&#x9806;&#x756A;&#x306B;&#x5024;&#x3092;&#x5165;&#x529B;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
 <table>
 <thead>
@@ -288,15 +288,11 @@
 </tr>
 <tr>
 <td>&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x30ED;&#x30FC;&#x30EB;</td>
-<td>&#x65B0;&#x3057;&#x3044;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x30ED;&#x30FC;&#x30EB;</td>
+<td>&#x65E2;&#x5B58;&#x306E;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x30ED;&#x30FC;&#x30EB;</td>
 </tr>
 <tr>
 <td>&#x30ED;&#x30FC;&#x30EB;&#x540D;</td>
-<td><code>AWSCodePipelineServiceRole-us-west-2-hands-on-pipeline</code></td>
-</tr>
-<tr>
-<td>Allow AWS CodePipeline to create ...</td>
-<td>&#x2714;</td>
+<td><code>hands-on-environment-CodePipeline-ServiceRole</code></td>
 </tr>
 <tr>
 <td>&#x30A2;&#x30FC;&#x30C6;&#x30A3;&#x30D5;&#x30A1;&#x30AF;&#x30C8;&#x30B9;&#x30C8;&#x30A2;</td>
@@ -344,27 +340,27 @@
 <tbody>
 <tr>
 <td>&#x30D7;&#x30ED;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x540D;</td>
-<td>hands-on-project</td>
+<td><code>hands-on-project</code></td>
 </tr>
 <tr>
 <td>&#x74B0;&#x5883;&#x30A4;&#x30E1;&#x30FC;&#x30B8;</td>
-<td>&#x30DE;&#x30CD;&#x30FC;&#x30B8;&#x30C9;&#x578B;&#x30A4;&#x30E1;&#x30FC;&#x30B8;</td>
+<td><code>&#x30DE;&#x30CD;&#x30FC;&#x30B8;&#x30C9;&#x578B;&#x30A4;&#x30E1;&#x30FC;&#x30B8;</code></td>
 </tr>
 <tr>
 <td>OS</td>
-<td>Ubuntu</td>
+<td><code>Ubuntu</code></td>
 </tr>
 <tr>
 <td>&#x30E9;&#x30F3;&#x30BF;&#x30A4;&#x30E0;</td>
-<td>Node.js</td>
+<td><code>Node.js</code></td>
 </tr>
 <tr>
 <td>&#x30E9;&#x30F3;&#x30BF;&#x30A4;&#x30E0;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;</td>
-<td>aws/codebuild/nodejs:10.1.0</td>
+<td><code>aws/codebuild/nodejs:10.1.0</code></td>
 </tr>
 <tr>
 <td>Image version</td>
-<td>Always use the latest image for this runtime version</td>
+<td><code>&#x3053;&#x306E;&#x30E9;&#x30F3;&#x30BF;&#x30A4;&#x30E0;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x306B;&#x306F;&#x5E38;&#x306B;&#x6700;&#x65B0;&#x306E;&#x30A4;&#x30E1;&#x30FC;&#x30B8;&#x3092;&#x4F7F;&#x7528;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;</code></td>
 </tr>
 <tr>
 <td>&#x7279;&#x6A29;&#x4ED8;&#x4E0E;</td>
@@ -372,7 +368,7 @@
 </tr>
 <tr>
 <td>&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x30ED;&#x30FC;&#x30EB;</td>
-<td>&#x65E2;&#x5B58;&#x306E;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x30ED;&#x30FC;&#x30EB;</td>
+<td><code>&#x65E2;&#x5B58;&#x306E;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x30ED;&#x30FC;&#x30EB;</code></td>
 </tr>
 <tr>
 <td>&#x30ED;&#x30FC;&#x30EB;&#x540D;</td>
@@ -384,7 +380,7 @@
 </tr>
 <tr>
 <td>&#x30D3;&#x30EB;&#x30C9;&#x4ED5;&#x69D8;</td>
-<td>buildspec.yml</td>
+<td><code>buildspec &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F7F;&#x7528;&#x3059;&#x308B;</code></td>
 </tr>
 </tbody>
 </table>
@@ -399,7 +395,7 @@
 <tbody>
 <tr>
 <td>&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x30D7;&#x30ED;&#x30D0;&#x30A4;&#x30C0;</td>
-<td>AWS CodeDeploy</td>
+<td><code>AWS CodeDeploy</code></td>
 </tr>
 <tr>
 <td>&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x540D;</td>
@@ -413,7 +409,7 @@
 </table>
 <p>&#x6700;&#x5F8C;&#x306B;&#x78BA;&#x8A8D;&#x753B;&#x9762;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;&#x306E;&#x3067;&#x3001;&#x5185;&#x5BB9;&#x3092;&#x78BA;&#x8A8D;&#x5F8C;&#x3001;&#x300C;&#x30D1;&#x30A4;&#x30D7;&#x30E9;&#x30A4;&#x30F3;&#x306E;&#x4F5C;&#x6210;&#x300D;&#x3092;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <p>&#x3059;&#x308B;&#x3068;&#x3001;&#x30D1;&#x30A4;&#x30D7;&#x30E9;&#x30A4;&#x30F3;&#x304C;&#x81EA;&#x52D5;&#x3067;&#x958B;&#x59CB;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p><img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/FireShot-Capture-14-AWS-Developer-Tools_-https___ap-northeast-1.console.aws_-640x319.png" alt="" width="640" height="319" class="alignnone size-medium wp-image-367740"></p>
+<p><img src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/10/FireShot-Capture-14-AWS-Developer-Tools_-https___ap-northeast-1.console.aws_.png" alt=""></p>
 
                                 
                                 </section>
@@ -457,7 +453,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"CodePipeline の設定","level":"1.6","depth":1,"next":{"title":"テストに失敗！","level":"1.7","depth":1,"path":"stop-on-test-failed.md","ref":"stop-on-test-failed.md","articles":[]},"previous":{"title":"CodeDeploy の設定","level":"1.5","depth":1,"path":"codedeploy.md","ref":"codedeploy.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"codepipeline.md","mtime":"2018-11-26T06:40:33.197Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-26T06:50:31.020Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"CodePipeline の設定","level":"1.6","depth":1,"next":{"title":"テストに失敗！","level":"1.7","depth":1,"path":"stop-on-test-failed.md","ref":"stop-on-test-failed.md","articles":[]},"previous":{"title":"CodeDeploy の設定","level":"1.5","depth":1,"path":"codedeploy.md","ref":"codedeploy.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["copy-code-button"],"pluginsConfig":{"copy-code-button":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"codepipeline.md","mtime":"2018-11-28T04:04:50.677Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-03T03:33:46.068Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -465,6 +461,10 @@
         
     <script src="gitbook/gitbook.js"></script>
     <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
