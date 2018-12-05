@@ -1,5 +1,7 @@
 ## CodeDeploy の設定
 
+![](images/pipeline_codedeploy_focus.png)
+
 CodePipeline からのデプロイ先を作成するため、先に CodeDeploy の設定を行っていきます。
 
 CodeDeploy ではアプリケーションとデプロイグループを作成していきます。

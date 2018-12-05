@@ -1,5 +1,7 @@
 ## CodePipeline によるパイプラインの構築および自動デプロイの実行
 
+![](images/pipeline_codepipeline_focus.png)
+
 CodeDeploy の設定が済んだところで、CodePipeline/CodeBuild/CodeDeploy を使用したパイプラインを作成していきます。
 
 今回作成するパイプラインは以下図の左側の部分です。
@@ -25,7 +27,13 @@ CodeDeploy の設定が済んだところで、CodePipeline/CodeBuild/CodeDeploy
 | ロール名               | `hands-on-environment-CodePipeline-ServiceRole` |
 | アーティファクトストア | デフォルトの場所                                |
 
-次はソースプロバイダのセットアップが始まるので以下の表のように入力後、「次のステップ」をクリックします。
+次はソースプロバイダのセットアップが始まります。
+
+GitHub接続ボタンをクリックすると、以下のような画面が表示されるのでAuthorizeボタンをクリクします。
+
+![](images/github_oauth.png)
+
+その後、元の画面で以下の表のように入力後、「次のステップ」をクリックします。
 
 | 入力項目           | 値                           |
 | ------------------ | ---------------------------- |

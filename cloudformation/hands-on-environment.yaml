@@ -43,6 +43,11 @@ Parameters:
     Type: String
     Default: ami-04d3eb2e1993f679b
 
+  EnvironmentName:
+    Description: Please enter Environment name.
+    Type: String
+    Default: hands-on-environment
+
 Resources:
   ## VPC and Subnets and so on...
   VPC:
@@ -212,7 +217,7 @@ Resources:
   CodeBuildServiceRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub ${AWS::StackName}-CodeBuild-ServiceRole
+      RoleName: !Sub ${EnvironmentName}-CodeBuild-ServiceRole
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -222,7 +227,7 @@ Resources:
               Service: codebuild.amazonaws.com
             Action: sts:AssumeRole
       Policies:
-        - PolicyName: !Sub ${AWS::StackName}-CodeBuild-ServiceRolePolicy
+        - PolicyName: !Sub ${EnvironmentName}-CodeBuild-ServiceRolePolicy
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
@@ -257,7 +262,7 @@ Resources:
   CodePipelineServiceRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub ${AWS::StackName}-CodePipeline-ServiceRole
+      RoleName: !Sub ${EnvironmentName}-CodePipeline-ServiceRole
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -267,7 +272,7 @@ Resources:
               Service: codepipeline.amazonaws.com
             Action: sts:AssumeRole
       Policies:
-        - PolicyName: !Sub ${AWS::StackName}-CodeBuild-ServiceRolePolicy
+        - PolicyName: !Sub ${EnvironmentName}-CodeBuild-ServiceRolePolicy
           PolicyDocument:
             Statement:
               - Action:
@@ -370,7 +375,7 @@ Resources:
   CodeDeployServiceRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub ${AWS::StackName}-CodeDeploy-ServiceRole
+      RoleName: !Sub ${EnvironmentName}-CodeDeploy-ServiceRole
       Path: /
       AssumeRolePolicyDocument:
         Statement:
@@ -529,7 +534,7 @@ Resources:
       HealthCheckTimeoutSeconds: 3
       HealthyThresholdCount: 2
       TargetType: instance
-      Name: !Sub ${AWS::StackName}-TargetGroup
+      Name: !Sub ${EnvironmentName}-TargetGroup
       Port: 80
       Protocol: HTTP
       UnhealthyThresholdCount: 5

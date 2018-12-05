@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="stop-on-test-failed.html" />
+    <link rel="next" href="auto_deploy.html" />
     
     
     <link rel="prev" href="codedeploy.html" />
@@ -167,12 +167,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7" data-path="stop-on-test-failed.html">
+        <li class="chapter " data-level="1.7" data-path="auto_deploy.html">
             
-                <a href="stop-on-test-failed.html">
+                <a href="auto_deploy.html">
             
                     
-                    テストに失敗！
+                    自動デプロイ！
             
                 </a>
             
@@ -198,7 +198,7 @@
                 <a href="stop-on-alert-fired.html">
             
                     
-                    アラート発報時にデプロイ
+                    アラート発報時にデプロイしてみる
             
                 </a>
             
@@ -265,6 +265,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <h2 id="codepipeline-&#x306B;&#x3088;&#x308B;&#x30D1;&#x30A4;&#x30D7;&#x30E9;&#x30A4;&#x30F3;&#x306E;&#x69CB;&#x7BC9;&#x304A;&#x3088;&#x3073;&#x81EA;&#x52D5;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x306E;&#x5B9F;&#x884C;">CodePipeline &#x306B;&#x3088;&#x308B;&#x30D1;&#x30A4;&#x30D7;&#x30E9;&#x30A4;&#x30F3;&#x306E;&#x69CB;&#x7BC9;&#x304A;&#x3088;&#x3073;&#x81EA;&#x52D5;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x306E;&#x5B9F;&#x884C;</h2>
+<p><img src="images/pipeline_codepipeline_focus.png" alt=""></p>
 <p>CodeDeploy &#x306E;&#x8A2D;&#x5B9A;&#x304C;&#x6E08;&#x3093;&#x3060;&#x3068;&#x3053;&#x308D;&#x3067;&#x3001;CodePipeline/CodeBuild/CodeDeploy &#x3092;&#x4F7F;&#x7528;&#x3057;&#x305F;&#x30D1;&#x30A4;&#x30D7;&#x30E9;&#x30A4;&#x30F3;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
 <p>&#x4ECA;&#x56DE;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x30D1;&#x30A4;&#x30D7;&#x30E9;&#x30A4;&#x30F3;&#x306F;&#x4EE5;&#x4E0B;&#x56F3;&#x306E;&#x5DE6;&#x5074;&#x306E;&#x90E8;&#x5206;&#x3067;&#x3059;&#x3002;</p>
 <p><img src="https://cacoo.com/diagrams/Cl9H3qce7UsvLRVO-521EE.png" alt="&#x69CB;&#x6210;&#x56F3;"></p>
@@ -300,7 +301,10 @@
 </tr>
 </tbody>
 </table>
-<p>&#x6B21;&#x306F;&#x30BD;&#x30FC;&#x30B9;&#x30D7;&#x30ED;&#x30D0;&#x30A4;&#x30C0;&#x306E;&#x30BB;&#x30C3;&#x30C8;&#x30A2;&#x30C3;&#x30D7;&#x304C;&#x59CB;&#x307E;&#x308B;&#x306E;&#x3067;&#x4EE5;&#x4E0B;&#x306E;&#x8868;&#x306E;&#x3088;&#x3046;&#x306B;&#x5165;&#x529B;&#x5F8C;&#x3001;&#x300C;&#x6B21;&#x306E;&#x30B9;&#x30C6;&#x30C3;&#x30D7;&#x300D;&#x3092;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x6B21;&#x306F;&#x30BD;&#x30FC;&#x30B9;&#x30D7;&#x30ED;&#x30D0;&#x30A4;&#x30C0;&#x306E;&#x30BB;&#x30C3;&#x30C8;&#x30A2;&#x30C3;&#x30D7;&#x304C;&#x59CB;&#x307E;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>GitHub&#x63A5;&#x7D9A;&#x30DC;&#x30BF;&#x30F3;&#x3092;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3059;&#x308B;&#x3068;&#x3001;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306A;&#x753B;&#x9762;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;&#x306E;&#x3067;Authorize&#x30DC;&#x30BF;&#x30F3;&#x3092;&#x30AF;&#x30EA;&#x30AF;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p><img src="images/github_oauth.png" alt=""></p>
+<p>&#x305D;&#x306E;&#x5F8C;&#x3001;&#x5143;&#x306E;&#x753B;&#x9762;&#x3067;&#x4EE5;&#x4E0B;&#x306E;&#x8868;&#x306E;&#x3088;&#x3046;&#x306B;&#x5165;&#x529B;&#x5F8C;&#x3001;&#x300C;&#x6B21;&#x306E;&#x30B9;&#x30C6;&#x30C3;&#x30D7;&#x300D;&#x3092;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <table>
 <thead>
 <tr>
@@ -442,7 +446,7 @@
                 </a>
                 
                 
-                <a href="stop-on-test-failed.html" class="navigation navigation-next " aria-label="Next page: テストに失敗！">
+                <a href="auto_deploy.html" class="navigation navigation-next " aria-label="Next page: 自動デプロイ！">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -453,7 +457,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"CodePipeline の設定","level":"1.6","depth":1,"next":{"title":"テストに失敗！","level":"1.7","depth":1,"path":"stop-on-test-failed.md","ref":"stop-on-test-failed.md","articles":[]},"previous":{"title":"CodeDeploy の設定","level":"1.5","depth":1,"path":"codedeploy.md","ref":"codedeploy.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["copy-code-button"],"pluginsConfig":{"copy-code-button":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"codepipeline.md","mtime":"2018-11-28T04:04:50.677Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-03T03:33:46.068Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"CodePipeline の設定","level":"1.6","depth":1,"next":{"title":"自動デプロイ！","level":"1.7","depth":1,"path":"auto_deploy.md","ref":"auto_deploy.md","articles":[]},"previous":{"title":"CodeDeploy の設定","level":"1.5","depth":1,"path":"codedeploy.md","ref":"codedeploy.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["copy-code-button"],"pluginsConfig":{"copy-code-button":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"codepipeline.md","mtime":"2018-12-05T09:35:51.041Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-05T09:36:09.497Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
