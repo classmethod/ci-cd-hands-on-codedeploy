@@ -38,7 +38,7 @@ Parameters:
     Type: String
     Default: ami-04d3eb2e1993f679b
 
-  EnvironmentName:
+  EnvironmentName:˚
     Description: Please enter Environment name.
     Type: String
     Default: hands-on-environment

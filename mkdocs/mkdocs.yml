@@ -1,6 +1,6 @@
 site_name: CI/CDハンズオン
 nav:
-  - Introduction: README.md
+  - トップ: README.md
   - 全体構成: architecture.md
   - パイプライン構築の準備: preparation.md
   - ハンズオンで構築する構成: architecture.md
@@ -11,4 +11,5 @@ nav:
   - アラートを発火させてみる: load.md
   - ロールバックしてみる: load.md
   - まとめ: conclusion.md
+  - 参考情報: reference.md
 theme: material
