@@ -1,8 +1,8 @@
-# CodePipeline によるパイプラインの構築および自動デプロイの実行
+# CodePipelineによるパイプラインの構築および自動デプロイの実行
 
 ![](images/pipeline_codepipeline_focus.png)
 
-CodeDeploy の設定が済んだところで、CodePipeline/CodeBuild/CodeDeploy を使用したパイプラインを作成していきます。
+CodeDeployの設定が済んだところで、CodePipeline/CodeBuild/CodeDeployを使用したパイプラインを作成していきます。
 
 今回作成するパイプラインは以下図の左側の部分です。
 
@@ -47,7 +47,7 @@ CodeDeploy の設定が済んだところで、CodePipeline/CodeBuild/CodeDeploy
 
 ![GitHubに接続](images/connect-to-github.png)
 
-CodePipelineでGitHubを使用する設定を行うのが初回の場合、ボタンをクリックすると、以下の画像のような画面が表示されるので、`Authorize aws-codesuite`ボタンを押してください。
+初めてCodePipelineでGitHubを使用する設定を行う場合、ボタンをクリックすると、以下の画像のような画面が表示されます。`Authorize aws-codesuite`ボタンを押してください。
 
 ![GitHub OAuth](images/github_oauth.png)
 
@@ -58,11 +58,11 @@ GitHubとの接続が完了したら以下の表のように入力します。
 | ソースプロバイダ   | GitHub                         |
 | リポジトリ         | `フォークしておいたリポジトリ` |
 | ブランチ           | master                         |
-| 変更検出オプション | GitHub ウェブフック(推奨)      |
+| 変更検出オプション | GitHubウェブフック（推奨）      |
 
 入力が終わったら、「次へ」をクリックします。
 
-## 「ビルドステージの追加」　画面
+## 「ビルドステージの追加」画面
 
 「ビルドステージの追加」画面に遷移します。
 
@@ -74,11 +74,11 @@ GitHubとの接続が完了したら以下の表のように入力します。
 
 ### CodeBuildのプロジェクト作成ウィンドウ
 
-CodeBuild のプロジェクト作成画面が新しいウィンドウで開きます。
+CodeBuildのプロジェクト作成画面が新しいウィンドウで開きます。
 
 ![CodeBuildのプロジェクト作成画面](images/codebuild.png)
 
-CodeBuild のプロジェクトを作成していきます。
+CodeBuildのプロジェクトを作成していきます。
 
 #### プロジェクトの設定
 | 入力項目                 | 値                   |
@@ -96,15 +96,15 @@ CodeBuild のプロジェクトを作成していきます。
 | 特権付与 | ✔  |
 | サービスロール | 既存のサービスロール |
 | ロール名 | `hands-on-environment-CodeBuild-ServiceRole` |
-| AWS CodeBuildにこのサービスロールの編集を許可し | (チェックを外す) |
+| AWS CodeBuildにこのサービスロールの編集を許可し | (チェックを外す） |
 
 #### Buildspec
 | 入力項目                 | 値                   |
 | ------------------------ | -------------------- |
 | ビルド仕様 | buildspecファイルを使用する |
-| BuildSpec名 | (空欄のまま) |
+| BuildSpec名 | (空欄のまま） |
 
-入力が済んだら「CodePipelineに進む」ボタンをクリックします
+入力が済んだら「CodePipelineに進む」ボタンをクリックします。
 
 ### CodePipeline作成画面に戻った後
 CodePipelineの画面に戻ったら、以下のように入力されていることを確認し、「次へ」をクリックします。
@@ -132,7 +132,7 @@ CodePipelineの画面に戻ったら、以下のように入力されている�
 
 最後に確認画面が表示されるので、内容を確認後、「パイプラインの作成」をクリックします。
 
-「次へ」をクリックします
+「次へ」をクリックします。
 
 ## 確認画面
 最後に確認画面が表示されます。

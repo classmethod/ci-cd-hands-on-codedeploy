@@ -2,14 +2,15 @@
 
 ### すでに済んでいる想定のもの
 
-- AWS アカウントのコンソールにログインし、**東京リージョンのコンソールが表示されるようにしておく**
-- 自分の GitHub アカウントにログインする。
+- AWSアカウントのコンソールにログインし、**東京リージョンのコンソールが表示されるようにしておく**
+- 自分のGitHubアカウントにログインする
 
 ### サンプルアプリケーションのフォーク
 
   [こちら](https://github.com/katainaka0503/ci-cd-hands-on-codedeploy)のリポジトリをフォークし、自分のアカウントにリポジトリを作成します。
-  サンプルアプリケーションは、指定された数まで FizzBuzz を表示する Node.js による簡単なアプリケーションです
+  
+  サンプルアプリケーションは、指定された数までFizzBuzzを表示するNode.jsによる簡単なアプリケーションです。
 
-  ![](https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/fork.png)
+  ![フォークの説明画像](https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/fork.png)
 
-  上のリンクから GitHub の当該リポジトリのページに移動し、右上の `Fork` というボタンからフォークを実行します。
+  上のリンクからGitHubの当該リポジトリのページに移動し、右上の `Fork` というボタンからフォークを実行します。
