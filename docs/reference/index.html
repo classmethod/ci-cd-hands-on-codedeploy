@@ -311,18 +311,6 @@
       
       
 
-
-  <li class="md-nav__item">
-    <a href="../conclusion/" title="まとめ" class="md-nav__link">
-      まとめ
-    </a>
-  </li>
-
-    
-      
-      
-      
-
   
 
 
@@ -352,29 +340,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ec2codedeploy" title="EC2にCodeDeployでデプロイするパターン" class="md-nav__link">
-    EC2にCodeDeployでデプロイするパターン
+  <a href="#_2" title="承認を挟んでデプロイする" class="md-nav__link">
+    承認を挟んでデプロイする
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pull-request" title="Pull Requestをビルドしたいパターン" class="md-nav__link">
-    Pull Requestをビルドしたいパターン
+  <a href="#pull-request" title="Pull Requestをビルド" class="md-nav__link">
+    Pull Requestをビルド
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="サーバレスパターン" class="md-nav__link">
-    サーバレスパターン
+  <a href="#bluegreen" title="Blue/Greenデプロイ" class="md-nav__link">
+    Blue/Greenデプロイ
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#eks" title="EKSでパターン" class="md-nav__link">
-    EKSでパターン
+  <a href="#ecs" title="ECSへのデプロイ" class="md-nav__link">
+    ECSへのデプロイ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codepipeline" title="CodePipelineでの自動デプロイ時に通知" class="md-nav__link">
+    CodePipelineでの自動デプロイ時に通知
   </a>
   
 </li>
@@ -387,6 +382,18 @@
   
 </nav>
     
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../conclusion/" title="まとめ" class="md-nav__link">
+      まとめ
+    </a>
   </li>
 
     
@@ -411,29 +418,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ec2codedeploy" title="EC2にCodeDeployでデプロイするパターン" class="md-nav__link">
-    EC2にCodeDeployでデプロイするパターン
+  <a href="#_2" title="承認を挟んでデプロイする" class="md-nav__link">
+    承認を挟んでデプロイする
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pull-request" title="Pull Requestをビルドしたいパターン" class="md-nav__link">
-    Pull Requestをビルドしたいパターン
+  <a href="#pull-request" title="Pull Requestをビルド" class="md-nav__link">
+    Pull Requestをビルド
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="サーバレスパターン" class="md-nav__link">
-    サーバレスパターン
+  <a href="#bluegreen" title="Blue/Greenデプロイ" class="md-nav__link">
+    Blue/Greenデプロイ
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#eks" title="EKSでパターン" class="md-nav__link">
-    EKSでパターン
+  <a href="#ecs" title="ECSへのデプロイ" class="md-nav__link">
+    ECSへのデプロイ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codepipeline" title="CodePipelineでの自動デプロイ時に通知" class="md-nav__link">
+    CodePipelineでの自動デプロイ時に通知
   </a>
   
 </li>
@@ -455,23 +469,32 @@
               
                 
                 
-                <h1 id="_1">参考資料</h1>
-<h2 id="ec2codedeploy">EC2にCodeDeployでデプロイするパターン</h2>
+                <h1 id="_1">参考情報</h1>
+<h2 id="_2">承認を挟んでデプロイする</h2>
+<p><img alt="pipeline-with-approve" src="../images/pipeline-with-approve.png" /></p>
+<p>CodePipelineの編集画面よりステージを追加することで承認のプロセスを挟むことができます。</p>
+<p>図では一度ステージングにデプロイしたあと、手動で動作確認し、本番にデプロイするというパイプラインを紹介しています。</p>
+<h2 id="pull-request">Pull Requestをビルド</h2>
+<p><img alt="pull-request-build" src="../images/pull-request-build.png" /></p>
+<p>CodeBuildを使用することで、Pull Requestのビルドを行うことができます。</p>
 <ul>
-<li><a href="https://dev.classmethod.jp/etc/aws-github-devops-hands-on/">「AWS と GitHub で始める DevOps ハンズオン」の資料を公開します！</a></li>
+<li><a href="https://dev.classmethod.jp/cloud/aws/codebuild-github-pullrequest-settings/">弊社記事</a></li>
 </ul>
-<h2 id="pull-request">Pull Requestをビルドしたいパターン</h2>
+<h2 id="bluegreen">Blue/Greenデプロイ</h2>
+<p><img alt="blue-green" src="../images/blue-green-deployment.png" /></p>
+<p>今回のハンズオンではインプレースデプロイ、という稼働しているサーバ上にデプロイする方式で構築しましたが。Blue/Greenデプロイ方式でもデプロイを行うことができます。</p>
 <ul>
-<li><a href="https://dev.classmethod.jp/cloud/aws/codebuild-github-pullrequest-settings/">CodeBuild で GitHub のプルリクエストを自動ビルドして、結果を表示する</a></li>
+<li><a href="https://dev.classmethod.jp/cloud/aws/codedeploy-blue-green-deployment/">弊社記事</a></li>
 </ul>
-<h2 id="_2">サーバレスパターン</h2>
+<h2 id="ecs">ECSへのデプロイ</h2>
+<p><img alt="codepipeline-ecs-deploy" src="../images/ecs-deploy.png" /></p>
+<p>CodeシリーズではECSへのデプロイも行えます。CodeBuildでイメージをビルドし、新たなイメージをECS上にデプロイするという流れを簡単に構築できます。</p>
 <ul>
-<li><a href="https://dev.classmethod.jp/cloud/aws/aws-reinvent-codedeploy-lambda/">CodeDeploy を利用した Lambda のバージョン間の段階デプロイ</a></li>
-<li><a href="https://dev.classmethod.jp/server-side/serverless/understanding-lambda-deploy-with-codedeploy-using-aws-sam/">AWS SAM を通して CodeDeploy を利用した Lambda 関数のデプロイを理解する</a></li>
+<li><a href="https://dev.classmethod.jp/cloud/aws/codepipeline-support-ecs-deploy/">弊社記事</a></li>
 </ul>
-<h2 id="eks">EKSでパターン</h2>
+<h2 id="codepipeline">CodePipelineでの自動デプロイ時に通知</h2>
 <ul>
-<li><a href="https://dev.classmethod.jp/cloud/aws/kustomize-codepipeline-codebuild/">Kustomize + CodePipeline + CodeBuild で EKS に継続的デプロイしてみた</a></li>
+<li><a href="https://dev.classmethod.jp/cloud/aws/notify-codepipeline-events-to-slack/">弊社記事</a></li>
 </ul>
                 
                   
@@ -493,7 +516,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../conclusion/" title="まとめ" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../load/" title="ロールバックしてみる" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -502,11 +525,25 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                まとめ
+                ロールバックしてみる
               </span>
             </div>
           </a>
         
+        
+          <a href="../conclusion/" title="まとめ" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                まとめ
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>

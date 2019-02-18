@@ -12,6 +12,6 @@ nav:
   - 自動デプロイ！: auto_deploy.md
   - アラートを発火させてみる: load.md
   - ロールバックしてみる: load.md
-  - まとめ: conclusion.md
   - 参考情報: reference.md
+  - まとめ: conclusion.md
 theme: material

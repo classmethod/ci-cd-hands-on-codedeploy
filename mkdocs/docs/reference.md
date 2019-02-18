@@ -1,19 +1,38 @@
 
-# 参考資料
+# 参考情報
 
-## EC2にCodeDeployでデプロイするパターン
+## 承認を挟んでデプロイする
 
-- [「AWS と GitHub で始める DevOps ハンズオン」の資料を公開します！](https://dev.classmethod.jp/etc/aws-github-devops-hands-on/)
+![pipeline-with-approve](images/pipeline-with-approve.png)
 
-## Pull Requestをビルドしたいパターン
+CodePipelineの編集画面よりステージを追加することで承認のプロセスを挟むことができます。
 
-- [CodeBuild で GitHub のプルリクエストを自動ビルドして、結果を表示する](https://dev.classmethod.jp/cloud/aws/codebuild-github-pullrequest-settings/)
+図では一度ステージングにデプロイしたあと、手動で動作確認し、本番にデプロイするというパイプラインを紹介しています。
 
-## サーバレスパターン
+## Pull Requestをビルド
 
-- [CodeDeploy を利用した Lambda のバージョン間の段階デプロイ](https://dev.classmethod.jp/cloud/aws/aws-reinvent-codedeploy-lambda/)
-- [AWS SAM を通して CodeDeploy を利用した Lambda 関数のデプロイを理解する](https://dev.classmethod.jp/server-side/serverless/understanding-lambda-deploy-with-codedeploy-using-aws-sam/)
+![pull-request-build](images/pull-request-build.png)
 
-## EKSでパターン
+CodeBuildを使用することで、Pull Requestのビルドを行うことができます。
 
-- [Kustomize + CodePipeline + CodeBuild で EKS に継続的デプロイしてみた](https://dev.classmethod.jp/cloud/aws/kustomize-codepipeline-codebuild/)
+- [弊社記事](https://dev.classmethod.jp/cloud/aws/codebuild-github-pullrequest-settings/)
+
+## Blue/Greenデプロイ
+
+![blue-green](images/blue-green-deployment.png)
+
+今回のハンズオンではインプレースデプロイ、という稼働しているサーバ上にデプロイする方式で構築しましたが。Blue/Greenデプロイ方式でもデプロイを行うことができます。
+
+- [弊社記事](https://dev.classmethod.jp/cloud/aws/codedeploy-blue-green-deployment/)
+
+## ECSへのデプロイ
+
+![codepipeline-ecs-deploy](images/ecs-deploy.png)
+
+CodeシリーズではECSへのデプロイも行えます。CodeBuildでイメージをビルドし、新たなイメージをECS上にデプロイするという流れを簡単に構築できます。
+
+- [弊社記事](https://dev.classmethod.jp/cloud/aws/codepipeline-support-ecs-deploy/)
+
+## CodePipelineでの自動デプロイ時に通知
+
+- [弊社記事](https://dev.classmethod.jp/cloud/aws/notify-codepipeline-events-to-slack/)
