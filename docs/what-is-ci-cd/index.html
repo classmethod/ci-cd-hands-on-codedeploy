@@ -36,7 +36,7 @@
     
     
       
-        <title>パイプライン構築の準備 - CI/CDハンズオン</title>
+        <title>CI/CDとは - CI/CDハンズオン</title>
       
     
     
@@ -72,7 +72,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#_1" tabindex="1" class="md-skip">
+      <a href="#cicd" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -98,7 +98,7 @@
                 CI/CDハンズオン
               </span>
               <span class="md-header-nav__topic">
-                パイプライン構築の準備
+                CI/CDとは
               </span>
             
           
@@ -179,11 +179,82 @@
       
       
 
+  
 
-  <li class="md-nav__item">
-    <a href="../what-is-ci-cd/" title="CI/CDとは" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        CI/CDとは
+      </label>
+    
+    <a href="./" title="CI/CDとは" class="md-nav__link md-nav__link--active">
       CI/CDとは
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ci" title="継続的インテグレーション（CI)とは" class="md-nav__link">
+    継続的インテグレーション（CI)とは
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" title="メリット" class="md-nav__link">
+    メリット
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cd" title="継続的デリバリ（CD)とは" class="md-nav__link">
+    継続的デリバリ（CD)とは
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="メリット" class="md-nav__link">
+    メリット
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
     
@@ -215,65 +286,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        パイプライン構築の準備
-      </label>
-    
-    <a href="./" title="パイプライン構築の準備" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../preparation/" title="パイプライン構築の準備" class="md-nav__link">
       パイプライン構築の準備
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="パイプライン構築の準備" class="md-nav__link">
-    パイプライン構築の準備
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" title="すでに済んでいる想定のもの" class="md-nav__link">
-    すでに済んでいる想定のもの
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" title="サンプルアプリケーションのフォーク" class="md-nav__link">
-    サンプルアプリケーションのフォーク
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -399,28 +416,43 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="パイプライン構築の準備" class="md-nav__link">
-    パイプライン構築の準備
+  <a href="#ci" title="継続的インテグレーション（CI)とは" class="md-nav__link">
+    継続的インテグレーション（CI)とは
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" title="すでに済んでいる想定のもの" class="md-nav__link">
-    すでに済んでいる想定のもの
+  <a href="#_1" title="メリット" class="md-nav__link">
+    メリット
   </a>
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cd" title="継続的デリバリ（CD)とは" class="md-nav__link">
+    継続的デリバリ（CD)とは
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
-  <a href="#_3" title="サンプルアプリケーションのフォーク" class="md-nav__link">
-    サンプルアプリケーションのフォーク
+  <a href="#_2" title="メリット" class="md-nav__link">
+    メリット
   </a>
   
 </li>
@@ -447,19 +479,40 @@
               
                 
                 
-                  <h1>パイプライン構築の準備</h1>
-                
-                <h2 id="_1">パイプライン構築の準備</h2>
-<h3 id="_2">すでに済んでいる想定のもの</h3>
+                <h1 id="cicd">CI/CDとは</h1>
+<p>CI/CDは、継続的インテグレーションと継続的デリバリという言葉の略語です。CI/CDを実現するためのAWSのサービスがCodePipelineを始めとするCodeシリーズのサービス群です。</p>
+<h2 id="ci">継続的インテグレーション（CI)とは</h2>
+<blockquote>
+<p>開発者が自分のコード変更を定期的にセントラルリポジトリにマージし、その後に自動化されたビルドとテストを実行するDevOpsソフトウェア開発の手法</p>
+</blockquote>
+<p>引用元：<a href="https://aws.amazon.com/jp/devops/continuous-integration/">継続的インテグレーションとは?</a></p>
+<p>セントラルリポジトリに頻繁にマージしながら、都度テストを実行していくため、テストが頻繁に実施されることになります。</p>
+<h3 id="_1">メリット</h3>
 <ul>
-<li>AWSアカウントのコンソールにログインし、<strong>東京リージョンのコンソールが表示されるようにしておく</strong></li>
-<li>自分のGitHubアカウントにログインする</li>
+<li>テストが頻繁に、かつコードを書いた直後に実行されます<ul>
+<li>バグの発見にかかる時間が削減されます</li>
+<li>ソフトウェアの品質が向上します</li>
 </ul>
-<h3 id="_3">サンプルアプリケーションのフォーク</h3>
-<p><a href="https://github.com/katainaka0503/ci-cd-hands-on-codedeploy">こちら</a>のリポジトリをフォークし、自分のアカウントにリポジトリを作成します。</p>
-<p>サンプルアプリケーションは、指定された数までFizzBuzzを表示するNode.jsによる簡単なアプリケーションです。</p>
-<p><img alt="フォークの説明画像" src="https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2018/08/fork.png" /></p>
-<p>上のリンクからGitHubの当該リポジトリのページに移動し、右上の <code>Fork</code> というボタンからフォークを実行します。</p>
+</li>
+<li>機械的なチェックや煩雑な作業などを自動化します<ul>
+<li>開発者は本質的な作業に集中できます</li>
+<li>チームの生産性が向上します</li>
+</ul>
+</li>
+</ul>
+<h2 id="cd">継続的デリバリ（CD)とは</h2>
+<blockquote>
+<p>継続的デリバリーとは、DevOpsソフトウェア開発手法の 1 つで、コード変更が発生すると、自動的にビルド、テスト、および本番へのリリース準備が実行されるというものです。継続的デリバリーは継続的インテグレーションを拡張したもので、すべてのコード変更が、ビルド段階の後にテスト環境または本番環境、あるいはその両方にデプロイされます。</p>
+</blockquote>
+<p>引用元；<a href="https://aws.amazon.com/jp/devops/continuous-delivery/">継続的デリバリーとは?</a></p>
+<p>リリースまでのプロセスの一連の流れを自動化し、人間の承認をもってデプロイを行います。一連の流れの中には必要に応じて負荷試験、統合テストなど、ユニットテストより粒度の大きなテストを組み込むことも多いです。</p>
+<h3 id="_2">メリット</h3>
+<ul>
+<li>デプロイまでのリリースプロセス全体が自動化されることで、UIテスト、ロードテスト、統合テスト等も含めた一連のプロセスを自動で迅速に行うことができます</li>
+<li>コードの変更をすばやくリリースできるようになります</li>
+<li>リリースの自動化により開発者が手動作業から開放され、チームの生産性が向上します</li>
+<li>単体テストより粒度の大きいテストを組み込むことでさらなる品質の向上に繋がります</li>
+</ul>
                 
                   
                 
@@ -480,7 +533,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../architecture/" title="全体構成" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href=".." title="トップ" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -489,19 +542,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                全体構成
+                トップ
               </span>
             </div>
           </a>
         
         
-          <a href="../architecture/" title="ハンズオンで構築する構成" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../code-series/" title="使用するサービスの説明" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                ハンズオンで構築する構成
+                使用するサービスの説明
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

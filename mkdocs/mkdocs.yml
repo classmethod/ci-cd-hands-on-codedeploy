@@ -1,6 +1,7 @@
 site_name: CI/CDハンズオン
 nav:
   - トップ: README.md
+  - CI/CDとは: what-is-ci-cd.md
   - 使用するサービスの説明: code-series.md
   - 全体構成: architecture.md
   - パイプライン構築の準備: preparation.md
