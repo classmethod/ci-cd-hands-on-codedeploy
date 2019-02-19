@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test/**/*.test.js",
+    "forever": "./node_modules/.bin/forever",
     "mkdocs-build": "cd mkdocs && mkdocs build -d ../docs",
     "mkdocs-serve": "cd mkdocs && mkdocs serve",
     "textlint": "./node_modules/.bin/textlint mkdocs"
@@ -13,9 +14,11 @@
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.6.1",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "forever": "^0.15.3"
   },
   "devDependencies": {
+    "eslint": "^5.14.1",
     "mocha": "^5.2.0",
     "textlint": "^11.2.3",
     "textlint-rule-no-todo": "^2.0.1",

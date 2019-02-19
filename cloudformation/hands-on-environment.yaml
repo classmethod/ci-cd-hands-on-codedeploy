@@ -38,7 +38,7 @@ Parameters:
     Type: String
     Default: ami-04d3eb2e1993f679b
 
-  EnvironmentName:˚
+  EnvironmentName:
     Description: Please enter Environment name.
     Type: String
     Default: hands-on-environment
@@ -424,42 +424,36 @@ Resources:
     Metadata:
       AWS::CloudFormation::Init:
         configSets:
-          configSet1:
-            - codedeploy
-          configSet2:
-            - nginx
-          configSet3:
-            - node
           default:
-            - ConfigSet: configSet1
-            - ConfigSet: configSet2
-            - ConfigSet: configSet3
+            - codedeploy
+            - nginx
+            - node
         codedeploy:
           commands:
-            command1-1:
+            download-codedeploy-agent:
               command: !Sub |
                 wget https://aws-codedeploy-${AWS::Region}.s3.amazonaws.com/latest/install
               cwd: /tmp
-            command1-2:
+            ruby:
               command: "yum install -y ruby"
-            command1-3:
+            chmod-install-script:
               command: "chmod +x ./install"
               cwd: /tmp
-            command1-4:
+            execute-install-script:
               command: "./install auto"
               cwd: /tmp
         nginx:
           commands:
-            command2-1:
+            install-nginx:
               command: "amazon-linux-extras install -y nginx1.12"
           files:
             /etc/nginx/default.d/app.conf:
               content: |
-                location /express {
+                location / {
                     proxy_pass   http://127.0.0.1:3000/;
                 }
 
-                location /health {
+                location = /health {
                   empty_gif;
                 }
               mode: "000644"
@@ -474,12 +468,11 @@ Resources:
                   - /etc/nginx/default.d/app.conf
         node:
           commands:
-            command3-1:
+            download-rpm:
               command: curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -
-            command3-2:
+            yum-install:
               command: "yum -y install nodejs"
-            command3-3:
-              command: "npm install -g forever"
+
 
   EC2AutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
@@ -551,7 +544,7 @@ Resources:
 Outputs:
   AppURL:
     Description: Endpoint URL of ALB
-    Value: !Sub http://${ALB.DNSName}/express
+    Value: !Sub http://${ALB.DNSName}
   SessionManagerURL:
     Description: URL of Session SessionManagerURL
     Value: !Sub https://ap-northeast-1.console.aws.amazon.com/systems-manager/session-manager/sessions?region=${AWS::Region}

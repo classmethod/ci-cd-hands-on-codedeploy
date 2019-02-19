@@ -36,7 +36,7 @@
     
     
       
-        <title>ロールバックしてみる - CI/CDハンズオン</title>
+        <title>テスト失敗時にデプロイが止まることを確認 - CI/CDハンズオン</title>
       
     
     
@@ -98,7 +98,7 @@
                 CI/CDハンズオン
               </span>
               <span class="md-header-nav__topic">
-                ロールバックしてみる
+                テスト失敗時にデプロイが止まることを確認
               </span>
             
           
@@ -287,18 +287,6 @@
       
       
 
-
-  <li class="md-nav__item">
-    <a href="./" title="アラートを発火させてみる" class="md-nav__link">
-      アラートを発火させてみる
-    </a>
-  </li>
-
-    
-      
-      
-      
-
   
 
 
@@ -309,8 +297,8 @@
       
     
     
-    <a href="./" title="ロールバックしてみる" class="md-nav__link md-nav__link--active">
-      ロールバックしてみる
+    <a href="./" title="テスト失敗時にデプロイが止まることを確認" class="md-nav__link md-nav__link--active">
+      テスト失敗時にデプロイが止まることを確認
     </a>
     
   </li>
@@ -368,34 +356,26 @@
               
                 
                 
-                <h1 id="_1">負荷がかかる処理を含むコードをデプロイしてみる</h1>
-<p>アラートが発報された際のロールバックまでの流れを体験するため、デプロイされた状態でアクセスするとCPUの使用率が極端に高まるようなコードをデプロイします。</p>
-<p>GitHub上から<code>src/index.js</code> 内の以下の行のコメントアウトを解除します。これでアクセスするとCPUに負荷がかかるようになります。</p>
-<pre><code class="text">    //while(true){} // CPUをたくさん使用する処理
+                <h1 id="_1">テスト失敗時にデプロイが止まることを確認</h1>
+<p>バグが混入した際に、テストで処理が失敗し、デプロイが途中で止まることを確認するため、フォークしたリポジトリのコードを修正します。</p>
+<p>エディタでFizzBuzzのロジックが記述されているファイル、<code>src/model/fizzbuzz.js</code>を開きます。</p>
+<p>意図的にバグを混入させるためコードを修正します。</p>
+<pre><code class="js">if (i % 15 == 0) {
 </code></pre>
 
-<p>修正したら下の方にスクロールし、コミットしてPull Requestを作成します。</p>
-<p><img alt="confirm-edit" src="../images/confirm-edit.png" /></p>
-<p>画像のように、<code>Create a new branch for this commit and start a pull request</code>を選択し、<code>Propose file change</code>をクリックします。</p>
-<p>そうすると、Pull Requestの作成画面が開きます。</p>
-<p><img alt="create-pull-request" src="../images/create-pull-request.png" /></p>
-<p>さらに、作成したPull Requestをマージします。</p>
-<p><img alt="merge-pull-request" src="../images/merge-pull-request.png" /></p>
-<p><code>Create Pull Request</code>をクリックします。</p>
-<p>CodePipelineによるデプロイが完了したら、サンプルアプリケーションにアクセスします。</p>
-<p>すると、すぐにはレスポンスが帰ってこず、ALBでタイムアウトしたあとに以下の画面のようなレスポンスが返ってきます。</p>
-<p><img alt="504" src="../images/timeout.png" /></p>
-<p>また、しばらくするとCPUの使用率が100％になり、Mackerelでアラートが発報されます。</p>
-<p><img alt="アラート" src="../images/alert-mackerel.png" /></p>
-<p>では、問題を解決するため、ロールバックを行いましょう。</p>
-<p>GitHub上から当該のコードをロールバックします。</p>
-<p>先程マージしたPull Requestの画面より、<code>Revert</code>ボタンを選択します。</p>
-<p><img alt="to-revert" src="../images/to-revert.png" /></p>
-<p>そうすると、先程マージしたPull Requestの内容を取り消すPull Requestが作成されます。</p>
-<p><img alt="revert-create-pull-request" src="../images/revert-create-pull-request.png" /></p>
-<p>作成されたPull Requestをマージします。</p>
-<p><img alt="revert-merge-pull-request" src="../images/revert-merge-pull-request.png" /></p>
-<p>しばらくすると、アプリケーションの表示は正常に戻り、Mackerelで発報されたアラートもクローズされます。</p>
+<p>上に示した行を以下のように修正します。</p>
+<pre><code class="js">if (i % 10 == 0) {
+</code></pre>
+
+<p>修正が終わったらコミットし、GitHub上にプッシュします。</p>
+<pre><code class="shell">git commit -am bug
+git push origin master
+</code></pre>
+
+<p>GitHubにプッシュすると、CodePipelineでの処理が開始されます。
+しかし、CodeBuildでテストが失敗し、ECSへのデプロイは実行されません。</p>
+<p><img alt="テスト失敗" src="../images/test-failed.png" /></p>
+<p>テストが自動で実行される環境が構築されていたため、バグの混入したバージョンがデプロイされるのを防ぐことができました。</p>
                 
                   
                 
@@ -416,7 +396,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="./" title="アラートを発火させてみる" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../auto_deploy/" title="自動デプロイ！" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -425,7 +405,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                アラートを発火させてみる
+                自動デプロイ！
               </span>
             </div>
           </a>
