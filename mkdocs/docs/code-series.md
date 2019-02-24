@@ -4,7 +4,7 @@
 
 ## CodePipeline
 
-<img src="/images/codepipeline-icon.png" width="40%"/>
+<img src="../images/codepipeline-icon.png" width="40%"/>
 
 CodePipelineはマネージドの継続的デリバリサービスです。
 
@@ -13,7 +13,7 @@ CodePipelineはマネージドの継続的デリバリサービスです。
 
 ## CodeBuild
 
-<img src="/images/codebuild-icon.png" width="40%"/>
+<img src="../images/codebuild-icon.png" width="40%"/>
 
 CodeBuildはビルドを行うAWSのマネージドサービスです。
 
@@ -24,9 +24,9 @@ CodeBuildはビルドを行うAWSのマネージドサービスです。
 
 ## CodeDeploy
 
-<img src="/images/codedeploy-icon.png" width="40%"/>
+<img src="../images/codedeploy-icon.png" width="40%"/>
 
-CodeDeployはマネージドのビルド自動化サービスです。
+CodeDeployはマネージドの自動デプロイサービスです。
 
 - EC2やAWS Lambda、ECSに対応
 - 問題が発生した際には簡単にロールバック

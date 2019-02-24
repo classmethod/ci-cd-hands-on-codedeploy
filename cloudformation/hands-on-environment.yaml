@@ -34,9 +34,8 @@ Parameters:
     Default: t3.nano
 
   AMIId:
-    Description: Please enter EC2 AMI id.
-    Type: String
-    Default: ami-04d3eb2e1993f679b
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
 
   EnvironmentName:
     Description: Please enter Environment name.
@@ -425,35 +424,35 @@ Resources:
       AWS::CloudFormation::Init:
         configSets:
           default:
-            - codedeploy
             - nginx
             - node
+            - codedeploy
         codedeploy:
           commands:
-            download-codedeploy-agent:
+            command-1:
               command: !Sub |
                 wget https://aws-codedeploy-${AWS::Region}.s3.amazonaws.com/latest/install
               cwd: /tmp
-            ruby:
+            command-2:
               command: "yum install -y ruby"
-            chmod-install-script:
+            command-3:
               command: "chmod +x ./install"
               cwd: /tmp
-            execute-install-script:
+            command-4:
               command: "./install auto"
               cwd: /tmp
         nginx:
           commands:
-            install-nginx:
+            command-1:
               command: "amazon-linux-extras install -y nginx1.12"
           files:
             /etc/nginx/default.d/app.conf:
               content: |
-                location / {
+                location /express {
                     proxy_pass   http://127.0.0.1:3000/;
                 }
 
-                location = /health {
+                location /health {
                   empty_gif;
                 }
               mode: "000644"
@@ -468,10 +467,12 @@ Resources:
                   - /etc/nginx/default.d/app.conf
         node:
           commands:
-            download-rpm:
+            command-1:
               command: curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -
-            yum-install:
+            command-2:
               command: "yum -y install nodejs"
+            command-3:
+              command: npm install -g forever
 
 
   EC2AutoScalingGroup:
@@ -544,7 +545,7 @@ Resources:
 Outputs:
   AppURL:
     Description: Endpoint URL of ALB
-    Value: !Sub http://${ALB.DNSName}
+    Value: !Sub http://${ALB.DNSName}/express
   SessionManagerURL:
     Description: URL of Session SessionManagerURL
     Value: !Sub https://ap-northeast-1.console.aws.amazon.com/systems-manager/session-manager/sessions?region=${AWS::Region}

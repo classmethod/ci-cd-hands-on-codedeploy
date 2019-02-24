@@ -1,6 +1,6 @@
 # ハンズオンで構築する構成
 
-![構成図](https://cacoo.com/diagrams/Cl9H3qce7UsvLRVO-521EE.png)
+![構成図](https://cacoo.com/diagrams/Bik1Om7JvTVGzpfj-9A688.png)
 
 ![](images/pipeline_all.png)
 

@@ -1,0 +1,6 @@
+```
+sudo git clone <httpsのGitリポジトリURI> /usr/src/app
+cd /usr/src/app
+sudo npm install
+sudo ./before
+```
