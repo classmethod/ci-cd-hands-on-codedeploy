@@ -11,7 +11,7 @@ module.exports = (number) => {
     } else {
       result.push(i);
     }
-  }
+  } 
 
   return result;
-}
+} 
