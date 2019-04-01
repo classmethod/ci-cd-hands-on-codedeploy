@@ -180,33 +180,26 @@ Resources:
   EC2SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Security group for ec2
       VpcId: !Ref VPC
+      GroupName: !Sub ${EnvironmentName}-App
+      GroupDescription: "security group for app server EC2 instance"
       SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 22
-          ToPort: 22
-          CidrIp: 0.0.0.0/0
-        - IpProtocol: tcp
+        - SourceSecurityGroupId: !Ref ALBSecurityGroup
+          IpProtocol: tcp
           FromPort: 80
           ToPort: 80
-          SourceSecurityGroupId: !Ref ALBSecurityGroup
-      Tags:
-        - Key: Name
-          Value: !Sub ${EnvironmentName}-DemoAppSecurityGroup
 
   ALBSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupName: "alb-sg"
-      GroupDescription: Access to the public facing load balancer
-      VpcId: !Ref "VPC"
+      GroupDescription: "security group for ALB"
+      GroupName: !Sub ${EnvironmentName}-ALB
+      VpcId: !Ref VPC
       SecurityGroupIngress:
         - CidrIp: 0.0.0.0/0
-          IpProtocol: "-1"
-      Tags:
-        - Key: Name
-          Value: !Sub ${EnvironmentName}-ALBSecurityGroup
+          IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
 
   CodeBuildServiceRole:
     Type: AWS::IAM::Role
@@ -398,28 +391,32 @@ Resources:
         - arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforAWSCodeDeploy
         - arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM
 
-  EC2IAMProfile:
+  IAMInstanceProfile:
     Type: AWS::IAM::InstanceProfile
     Properties:
       Path: /
       Roles:
         - !Ref EC2IAMRole
 
-  EC2LaunchConfig:
-    Type: AWS::AutoScaling::LaunchConfiguration
+  EC2LaunchTemplate:
+    Type: AWS::EC2::LaunchTemplate
     Properties:
-      AssociatePublicIpAddress: true
-      ImageId: !Ref AMIId
-      SecurityGroups:
-        - !Ref EC2SecurityGroup
-      InstanceType: t2.small
-      IamInstanceProfile: !Ref EC2IAMProfile
-      UserData:
-        Fn::Base64: !Sub |
-          #!/bin/bash -xe
-          yum update -y
-          /opt/aws/bin/cfn-init -s ${AWS::StackName} -r EC2LaunchConfig -c default --region ${AWS::Region}
-          /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2AutoScalingGroup --region ${AWS::Region}
+      LaunchTemplateName: !Sub ${EnvironmentName}-LaunchTemplate
+      LaunchTemplateData:
+        ImageId: !Ref AMIId
+        InstanceType: !Ref InstanceType
+        SecurityGroupIds:
+          - !Ref EC2SecurityGroup
+        IamInstanceProfile:
+          Name: !Ref IAMInstanceProfile
+        CreditSpecification:
+          CpuCredits: standard
+        UserData:
+          Fn::Base64: !Sub |
+            #!/bin/bash -xe
+            yum update -y
+            /opt/aws/bin/cfn-init -s ${AWS::StackName} -r EC2LaunchTemplate -c default --region ${AWS::Region}
+            /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2AutoScalingGroup --region ${AWS::Region}
     Metadata:
       AWS::CloudFormation::Init:
         configSets:
@@ -474,11 +471,12 @@ Resources:
             command-3:
               command: npm install -g forever
 
-
   EC2AutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
-      LaunchConfigurationName: !Ref EC2LaunchConfig
+      LaunchTemplate:
+        LaunchTemplateId: !Ref EC2LaunchTemplate
+        Version: !GetAtt EC2LaunchTemplate.LatestVersionNumber
       VPCZoneIdentifier:
         - !Ref PublicSubnet1
         - !Ref PublicSubnet2
@@ -495,10 +493,10 @@ Resources:
           PropagateAtLaunch: true
     CreationPolicy:
       ResourceSignal:
-        Timeout: PT15M
+        Timeout: PT5M
     UpdatePolicy:
       AutoScalingRollingUpdate:
-        PauseTime: PT15M
+        PauseTime: PT5M
         WaitOnResourceSignals: true
 
   ## ALB Resources
