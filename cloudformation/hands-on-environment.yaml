@@ -493,10 +493,10 @@ Resources:
           PropagateAtLaunch: true
     CreationPolicy:
       ResourceSignal:
-        Timeout: PT5M
+        Timeout: PT15M
     UpdatePolicy:
       AutoScalingRollingUpdate:
-        PauseTime: PT5M
+        PauseTime: PT15M
         WaitOnResourceSignals: true
 
   ## ALB Resources
@@ -547,3 +547,4 @@ Outputs:
   SessionManagerURL:
     Description: URL of Session SessionManagerURL
     Value: !Sub https://ap-northeast-1.console.aws.amazon.com/systems-manager/session-manager/sessions?region=${AWS::Region}
+
